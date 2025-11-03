@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tours – Qushal Tour & Travels</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Use Lucide for modern icons in the nav -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- The user's original file linked to css/styles.css, which I don't have.
+       I'll keep the link, but the styling relies heavily on Tailwind. -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{font-family:'Inter',sans-serif}
+    
+    /* Custom focus styles for form */
+    .focus-brand:focus {
+      border-color: #FFD700;
+      box-shadow: 0 0 0 2px #FFD70060;
+      outline: none;
+    }
+
+    /* Hide element by default */
+    .hidden-by-default {
+      display: none;
+    }
+    
+    /* Styling for modal scrollbar */
+    .modal-body::-webkit-scrollbar {
+      width: 8px;
+    }
+    .modal-body::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .modal-body::-webkit-scrollbar-thumb {
+      background: #c5c5c5;
+      border-radius: 10px;
+    }
+    .modal-body::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+<!-- Sticky Header Container -->
+<div class="sticky top-0 z-50 w-full px-4 py-3 transition-all duration-300" id="headerContainer">
+  <header class="relative max-w-7xl mx-auto bg-transparent shadow-none border-transparent rounded-full border transition-all duration-300" id="mainHeader">
+    <nav class="w-full px-4 sm:px-6 py-2 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <!-- Assuming logo path is relative, user had 'images/qushal logo 3.jpg' -->
+        <img src="qushal_logo_3-removebg-preview.png" alt="Qushal Tour & Travels Logo"
+             onerror="this.src='https://placehold.co/100x100/0A2647/FFD700?text=QTT&font=inter'"
+             class="h-12 w-auto rounded-xl shadow-md">
+        <span class="text-xl font-bold text-white hidden sm:block" id="navLogoText">Qushal Travels</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-1 font-medium items-center" id="desktopNavLinks">
+        <li>
+          <a href="index.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            <span class="relative">Home</span>
+          </a>
+        </li>
+        <li>
+          <!-- Active Link Style -->
+          <a href="tours.html" class="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white transition-colors duration-200" id="activeNavLink">
+            <i data-lucide="map" class="w-5 h-5"></i>
+            <span class="relative">Tours</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="concierge-bell" class="w-5 h-5"></i>
+            <span class="relative">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span class="relative">Contact</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- CTA Button -->
+      <a href="contact.html"
+         class="hidden md:inline-block bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+         Get in Touch
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden flex items-center text-white text-2xl" id="menuBtn">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Dropdown -->
+  <div class="md:hidden hidden flex-col space-y-2 px-4 py-4 bg-white shadow-lg rounded-2xl mt-2 mx-4 border border-gray-100" id="mobileMenu">
+    <a href="index.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="home" class="w-5 h-5 text-gray-500"></i> Home</a>
+    <a href="tours.html" class="flex items-center gap-3 py-3 px-3 rounded-md bg-gray-100 text-blue-600 transition-colors"><i data-lucide="map" class="w-5 h-5"></i> Tours</a>
+    <a href="services.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="concierge-bell" class="w-5 h-5 text-gray-500"></i> Services</a>
+    <a href="contact.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-gray-500"></i> Contact</a>
+    <a href="contact.html" class="mt-2 bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-center">Get in Touch</a>
+  </div>
+</div>
+
+<!-- Header Script (Copied from index.html for scroll behavior) -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const headerContainer = document.getElementById("headerContainer");
+  const mainHeader = document.getElementById("mainHeader");
+  const navLogoText = document.getElementById("navLogoText");
+  const desktopNavLinks = document.getElementById("desktopNavLinks");
+  const activeNavLink = document.getElementById("activeNavLink");
+
+  // Mobile Menu Toggle
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle("flex");
+  });
+
+  // Shadow animation on scroll
+  window.addEventListener("scroll", () => {
+    const navLinks = desktopNavLinks.querySelectorAll('a.nav-link');
+    
+    if (window.scrollY > 20) {
+      // 1. Add background to header
+      mainHeader.classList.add("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.remove("bg-transparent", "shadow-none", "border-transparent");
+
+      // 2. Change logo text color
+      if (navLogoText) {
+        navLogoText.classList.add("text-gray-800");
+        navLogoText.classList.remove("text-white");
+      }
+      
+      // 3. Change mobile menu button color
+      menuBtn.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+
+      // 4. Change nav links (non-active)
+      navLinks.forEach(link => {
+        link.classList.add("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.remove("text-white", "hover:bg-white/10");
+      });
+
+      // 5. Change active link style
+      if (activeNavLink) {
+        activeNavLink.classList.add("bg-blue-50", "text-blue-600");
+        activeNavLink.classList.remove("bg-white/20", "text-white");
+      }
+
+    } else {
+      // 1. Remove background from header
+      mainHeader.classList.remove("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.add("bg-transparent", "shadow-none", "border-transparent");
+
+      // 2. Change logo text color
+      if (navLogoText) {
+        navLogoText.classList.remove("text-gray-800");
+        navLogoText.classList.add("text-white");
+      }
+      
+      // 3. Change mobile menu button color
+      menuBtn.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+
+      // 4. Change nav links (non-active)
+      navLinks.forEach(link => {
+        link.classList.remove("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.add("text-white", "hover:bg-white/10");
+      });
+
+      // 5. Change active link style
+      if (activeNavLink) {
+        activeNavLink.classList.remove("bg-blue-50", "text-blue-600");
+        activeNavLink.classList.add("bg-white/20", "text-white");
+      }
+    }
+  });
+  
+  // Activate Lucide Icons
+  lucide.createIcons();
+</script>
+
+<!-- Hero Section for Tours Page -->
+<section class="relative h-[50vh] flex items-center justify-center text-white pt-[-88px] -mt-24"> <!-- Adjust pt/mt to offset sticky header height -->
+  <!-- Background Image -->
+  <img src="Gemini_Generated_Image_cs5acpcs5acpcs5a.png" alt="Beautiful Travel Destination" 
+       class="absolute inset-0 w-full h-full object-cover" />
+
+  <!-- Overlay for better readability -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 text-center px-4">
+    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight drop-shadow-lg">
+      Explore Our <span class="text-[#FFD700]">Tours</span>
+    </h1>
+    <p class="text-lg md:text-2xl mt-4 max-w-2xl mx-auto text-gray-200">
+      Find the perfect adventure tailored just for you.
+    </p>
+  </div>
+</section>
+
+
+<!-- Filter & Search Section -->
+<section class="py-12 bg-white border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+      <!-- Search Input -->
+      <div class="md:col-span-2">
+        <label for="search-box" class="block text-sm font-medium text-gray-700 mb-1">Search Destination</label>
+        <div class="relative">
+          <input type="text" id="search-box" placeholder="e.g. 'Kerala' or 'Himalayas'"
+                 class="w-full p-3 rounded-lg border-gray-300 shadow-sm focus-brand text-lg">
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Filter: Region -->
+      <div>
+        <label for="filter-region" class="block text-sm font-medium text-gray-700 mb-1">Region</label>
+        <select id="filter-region" class="w-full p-3 rounded-lg border-gray-300 shadow-sm focus-brand text-lg">
+          <option value="all">All Regions</option>
+          <option value="South India">South India</option>
+          <option value="North India">North India</option>
+          <option value="West India">West India</option>
+          <option value="North East India">North East India</option>
+        </select>
+      </div>
+      
+      <!-- Filter: Duration -->
+      <div>
+        <label for="filter-duration" class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+        <select id="filter-duration" class="w-full p-3 rounded-lg border-gray-300 shadow-sm focus-brand text-lg">
+          <option value="all">Any Duration</option>
+          <option value="1-5">1-5 Days</option>
+          <option value="6-10">6-10 Days</option>
+          <option value="10+">10+ Days</option>
+        </select>
+      </div>
+
+      <!-- Reset Button -->
+      <div>
+        <label for="reset-filters-btn" class="block text-sm font-medium text-transparent mb-1 hidden md:block">.</label> <!-- Spacer label for alignment -->
+        <button id="reset-filters-btn" class="w-full p-3 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-gray-300 transition shadow-sm text-lg flex items-center justify-center">
+          <i data-lucide="rotate-ccw" class="w-5 h-5 inline-block mr-2"></i> Reset
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customizable Tour CTA -->
+<section class="py-12 md:py-16 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-extrabold text-[#0A2647] mb-4">
+      Create Your Own Adventure
+    </h2>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+      We also offer fully customizable tours. Tell us your dream destinations, budget, and travel style, and we'll build a personalized itinerary just for you.
+    </p>
+    <button onclick="openBookingModal('custom')" class="bg-[#FFD700] text-[#0A2647] px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-[#e6c200] transition transform hover:-translate-y-0.5">
+      <i data-lucide="pencil-line" class="inline-block w-5 h-5 mr-2 -mt-1"></i>
+      Start Building Your Tour
+    </button>
+  </div>
+</section>
+
+<!-- NEW: Find Your Booking Section -->
+<section class="py-12 md:py-16 bg-white border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-extrabold text-[#0A2647] mb-4">
+        Already Booked?
+      </h2>
+      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        Enter your booking reference ID below to retrieve and download your travel voucher.
+      </p>
+      
+      <!-- Ticket Finder Form -->
+      <form id="find-ticket-form" class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+        <div class="relative flex-grow">
+          <input type="text" id="booking-id-input" placeholder="Enter your Booking ID (e.g. QTT-123ABC)"
+                 class="w-full p-4 rounded-lg border-gray-300 shadow-sm focus-brand text-lg" required>
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <i data-lucide="ticket" class="w-5 h-5 text-gray-400"></i>
+          </div>
+        </div>
+        <button type="submit" class="bg-[#0A2647] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-[#081f3a] transition transform hover:-translate-y-0.5 whitespace-nowrap">
+          <i data-lucide="search" class="inline-block w-5 h-5 mr-2 -mt-1"></i>
+          Find Ticket
+        </button>
+      </form>
+      <div id="booking-id-error" class="text-red-600 mt-4 text-left max-w-lg mx-auto hidden"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Tour Listings Section -->
+<section class="py-16 md:py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[#0A2647]">
+        Find Your <span class="text-[#FFD700]">Next Adventure</span>
+      </h2>
+    </div>
+    
+    <div id="tour-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+      
+      <!-- Tour 1: Kerala -->
+      <div class="tour-card bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col group h-full transition hover:shadow-2xl hover:-translate-y-1"
+           data-title="Enchanting Kerala" data-region="South India" data-duration="7" data-tour-id="kerala">
+        <img src="https://placehold.co/600x400/22c55e/ffffff?text=Kerala+Backwaters" alt="Enchanting Kerala" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="p-6 md:p-8 flex flex-col flex-grow text-left">
+          <h3 class="text-2xl font-bold mb-2 text-[#0A2647]">Enchanting Kerala</h3>
+          <p class="text-gray-700 mb-4 font-medium"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> 7 Days / 6 Nights</p>
+          <p class="text-gray-600 mb-6 flex-grow">Experience the serene backwaters, lush tea plantations, and vibrant culture of 'God's Own Country'.</p>
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <button onclick="openDetailsModal('kerala')" class="w-full text-center bg-blue-50 text-blue-600 px-5 py-3 rounded-full font-semibold shadow-sm hover:bg-blue-100 transition">
+              View Details
+            </button>
+            <button onclick="openBookingModal('Enchanting Kerala (7D/6N)')" class="w-full text-center bg-[#FFD700] text-[#0A2647] px-5 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">
+              Book This Tour
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour 2: Rajasthan -->
+      <div class="tour-card bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col group h-full transition hover:shadow-2xl hover:-translate-y-1"
+           data-title="Royal Rajasthan" data-region="North India" data-duration="10" data-tour-id="rajasthan">
+        <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Rajasthan+Fort" alt="Royal Rajasthan" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="p-6 md:p-8 flex flex-col flex-grow text-left">
+          <h3 class="text-2xl font-bold mb-2 text-[#0A2647]">Royal Rajasthan</h3>
+          <p class="text-gray-700 mb-4 font-medium"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> 10 Days / 9 Nights</p>
+          <p class="text-gray-600 mb-6 flex-grow">Discover the land of kings, majestic forts, vibrant markets, and timeless desert landscapes.</p>
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <button onclick="openDetailsModal('rajasthan')" class="w-full text-center bg-blue-50 text-blue-600 px-5 py-3 rounded-full font-semibold shadow-sm hover:bg-blue-100 transition">
+              View Details
+            </button>
+            <button onclick="openBookingModal('Royal Rajasthan (10D/9N)')" class="w-full text-center bg-[#FFD700] text-[#0A2647] px-5 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">
+              Book This Tour
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour 3: Himalayas -->
+      <div class="tour-card bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col group h-full transition hover:shadow-2xl hover:-translate-y-1"
+           data-title="Himalayan Escapade" data-region="North India" data-duration="5" data-tour-id="himalayas">
+        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Himalayan+Mountains" alt="Himalayan Escapade" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="p-6 md:p-8 flex flex-col flex-grow text-left">
+          <h3 class="text-2xl font-bold mb-2 text-[#0A2647]">Himalayan Escapade</h3>
+          <p class="text-gray-700 mb-4 font-medium"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> 5 Days / 4 Nights</p>
+          <p class="text-gray-600 mb-6 flex-grow">Breathe in the fresh mountain air, witness stunning peaks, and find peace in the serene valleys.</p>
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <button onclick="openDetailsModal('himalayas')" class="w-full text-center bg-blue-50 text-blue-600 px-5 py-3 rounded-full font-semibold shadow-sm hover:bg-blue-100 transition">
+              View Details
+            </button>
+            <button onclick="openBookingModal('Himalayan Escapade (5D/4N)')" class="w-full text-center bg-[#FFD700] text-[#0A2647] px-5 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">
+              Book This Tour
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tour 4: Goa -->
+      <div class="tour-card bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col group h-full transition hover:shadow-2xl hover:-translate-y-1"
+           data-title="Glorious Goa" data-region="West India" data-duration="4" data-tour-id="goa">
+        <img src="https://placehold.co/600x400/ec4899/ffffff?text=Goa+Beaches" alt="Glorious Goa" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="p-6 md:p-8 flex flex-col flex-grow text-left">
+          <h3 class="text-2xl font-bold mb-2 text-[#0A2647]">Glorious Goa</h3>
+          <p class="text-gray-700 mb-4 font-medium"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> 4 Days / 3 Nights</p>
+          <p class="text-gray-600 mb-6 flex-grow">Relax on sun-kissed beaches, enjoy vibrant nightlife, and explore historic Portuguese architecture.</p>
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <button onclick="openDetailsModal('goa')" class="w-full text-center bg-blue-50 text-blue-600 px-5 py-3 rounded-full font-semibold shadow-sm hover:bg-blue-100 transition">
+              View Details
+            </button>
+            <button onclick="openBookingModal('Glorious Goa (4D/3N)')" class="w-full text-center bg-[#FFD700] text-[#0A2647] px-5 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">
+              Book This Tour
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour 5: North East -->
+      <div class="tour-card bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col group h-full transition hover:shadow-2xl hover:-translate-y-1"
+           data-title="Unseen North East" data-region="North East India" data-duration="8" data-tour-id="northeast">
+        <img src="https://placehold.co/600x400/84cc16/ffffff?text=North+East+India" alt="Unseen North East" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="p-6 md:p-8 flex flex-col flex-grow text-left">
+          <h3 class="text-2xl font-bold mb-2 text-[#0A2647]">Unseen North East</h3>
+          <p class="text-gray-700 mb-4 font-medium"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> 8 Days / 7 Nights</p>
+          <p class="text-gray-600 mb-6 flex-grow">Discover the hidden gems of India, from living root bridges in Meghalaya to monasteries in Sikkim.</p>
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <button onclick="openDetailsModal('northeast')" class="w-full text-center bg-blue-50 text-blue-600 px-5 py-3 rounded-full font-semibold shadow-sm hover:bg-blue-100 transition">
+              View Details
+            </button>
+            <button onclick="openBookingModal('Unseen North East (8D/7N)')" class="w-full text-center bg-[#FFD700] text-[#0A2647] px-5 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">
+              Book This Tour
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour 6: South India -->
+      <div class="tour-card bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col group h-full transition hover:shadow-2xl hover:-translate-y-1"
+           data-title="Southern Wonders" data-region="South India" data-duration="9" data-tour-id="southindia">
+        <img src="https://placehold.co/600x400/6366f1/ffffff?text=South+India+Temples" alt="Southern Wonders" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="p-6 md:p-8 flex flex-col flex-grow text-left">
+          <h3 class="text-2xl font-bold mb-2 text-[#0A2647]">Southern Wonders</h3>
+          <p class="text-gray-700 mb-4 font-medium"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> 9 Days / 8 Nights</p>
+          <p class="text-gray-600 mb-6 flex-grow">Explore ancient temples, rich heritage in Tamil Nadu, and the beautiful coastlines of the south.</p>
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <button onclick="openDetailsModal('southindia')" class="w-full text-center bg-blue-50 text-blue-600 px-5 py-3 rounded-full font-semibold shadow-sm hover:bg-blue-100 transition">
+              View Details
+            </button>
+            <button onclick="openBookingModal('Southern Wonders (9D/8N)')" class="w-full text-center bg-[#FFD700] text-[#0A2647] px-5 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">
+              Book This Tour
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results Message -->
+      <div id="no-results" class="hidden md:col-span-2 lg:col-span-3 text-center py-12">
+        <h3 class="text-2xl font-semibold text-gray-700">No Tours Found</h3>
+        <p class="text-gray-500 mt-2">Try adjusting your search or filters.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- Booking Modal -->
+<div id="booking-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+  <div class="bg-gray-50 rounded-2xl shadow-xl w-full max-w-3xl">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h2 class="text-2xl font-extrabold text-[#0A2647]">
+        Book Your <span class="text-[#FFD700]">Dream Tour</span>
+      </h2>
+      <button id="close-booking-modal-btn" class="text-gray-400 hover:text-gray-600">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+    </div>
+    
+    <!-- Modal Body -->
+    <form id="tour-booking-form" class="modal-body max-h-[75vh] overflow-y-auto p-6 md:p-8 space-y-8">
+      
+      <!-- Section 1: Personal Info -->
+      <fieldset class="space-y-6">
+        <legend class="text-lg font-semibold text-blue-700 border-b border-blue-200 pb-2 w-full">
+          1. Personal Information
+        </legend>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="tour-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <input id="tour-name" type="text" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+          <div>
+            <label for="tour-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input id="tour-email" type="email" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+          <div class="md:col-span-2">
+            <label for="tour-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <input id="tour-phone" type="tel" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Section 2: Tour Preferences -->
+      <fieldset class="space-y-6">
+        <legend class="text-lg font-semibold text-blue-700 border-b border-blue-200 pb-2 w-full">
+          2. Tour Preferences
+        </legend>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="tour-package" class="block text-sm font-medium text-gray-700 mb-1">Selected Tour</label>
+            <select id="tour-package" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+              <option value="custom">Fully-Customizable Tour</option>
+              <option>Enchanting Kerala (7D/6N)</option>
+              <option>Royal Rajasthan (10D/9N)</option>
+              <option>Himalayan Escapade (5D/4N)</option>
+              <option>Glorious Goa (4D/3N)</option>
+              <option>Unseen North East (8D/7N)</option>
+              <option>Southern Wonders (9D/8N)</option>
+            </select>
+          </div>
+          <div>
+            <!-- Set a min date for the travel date input -->
+            <label for="tour-date" class="block text-sm font-medium text-gray-700 mb-1">Travel Date</label>
+            <input id="tour-date" type="date" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3" min="">
+          </div>
+          <div class="md:col-span-2">
+            <label for="pickup-location" class="block text-sm font-medium text-gray-700 mb-1">Pickup Location</label>
+            <input id="pickup-location" type="text" placeholder="e.g. Jammu Airport or Delhi Hotel" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+        </div>
+      </fieldset>
+      
+      <!-- Section 3: Guest & Hotel Details -->
+      <fieldset class="space-y-6">
+        <legend class="text-lg font-semibold text-blue-700 border-b border-blue-200 pb-2 w-full">
+          3. Guest & Hotel Details
+        </legend>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label for="tour-adults" class="block text-sm font-medium text-gray-700 mb-1">Adults (12+)</label>
+            <input id="tour-adults" type="number" min="1" value="1" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+          <div>
+            <label for="tour-children" class="block text-sm font-medium text-gray-700 mb-1">Children (0-11)</label>
+            <input id="tour-children" type="number" min="0" value="0" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+          <div>
+            <label for="hotel-preference" class="block text-sm font-medium text-gray-700 mb-1">Hotel Preference</label>
+            <select id="hotel-preference" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+              <option>No Hotel Needed</option>
+              <option>Budget</option>
+              <option>3-Star</option>
+              <option>4-Star</option>
+              <option>5-Star</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      
+      <!-- Custom Requirements Textbox -->
+      <div id="custom-requirements-box" class="mt-6 hidden-by-default space-y-6 pt-6 border-t border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="custom-budget" class="block text-sm font-medium text-gray-700 mb-1">Your Budget (Optional)</label>
+            <input id="custom-budget" type="text" placeholder="e.g. ₹50,000 for 2 people" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3">
+          </div>
+        </div>
+        <div>
+          <label for="custom-requirements" class="block text-sm font-medium text-gray-700 mb-1">Message / Custom Requirements</label>
+          <textarea id="custom-requirements" rows="4" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus-brand text-lg p-3" placeholder="Please describe your dream trip: destinations, duration, special requests, etc..."></textarea>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <button type="submit" class="w-full bg-[#0A2647] text-white py-4 px-4 rounded-full font-semibold text-lg hover:bg-[#081f3a] shadow-lg transition transform hover:-translate-y-0.5">
+          Submit Booking Request
+        </button>
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+
+<!-- Details Modal -->
+<div id="details-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+  <div class="bg-gray-50 rounded-2xl shadow-xl w-full max-w-3xl">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h2 id="details-modal-title" class="text-2xl font-extrabold text-[#0A2647]">
+        Tour Details
+      </h2>
+      <button id="close-details-modal-btn" class="text-gray-400 hover:text-gray-600">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+    </div>
+    
+    <!-- Modal Body -->
+    <div id="details-modal-body" class="modal-body max-h-[75vh] overflow-y-auto p-6 md:p-8 space-y-6">
+      <!-- Content will be injected by JavaScript -->
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="p-6 bg-gray-100 border-t border-gray-200 rounded-b-2xl">
+      <button id="details-modal-book-btn" class="w-full bg-[#FFD700] text-[#0A2647] py-4 px-4 rounded-full font-semibold text-lg hover:bg-[#e6c200] shadow-lg transition transform hover:-translate-y-0.5">
+        Book This Tour
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- === Success Modal === -->
+<div id="success-modal" class="hidden fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-md text-center p-8 md:p-10">
+    <!-- Success Icon -->
+    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+      <i class="fa-solid fa-check text-green-600 text-4xl"></i>
+    </div>
+    
+    <!-- Content -->
+    <h2 class="text-2xl md:text-3xl font-extrabold text-[#0A2647] mb-4">
+      Request Received!
+    </h2>
+    <p class="text-gray-600 text-lg mb-6">
+      Thank you! Your booking request has been submitted. We will contact you shortly to confirm.
+    </p>
+    
+    <!-- Booking ID Display -->
+    <div class="bg-gray-100 border border-gray-200 rounded-lg p-4 mb-8">
+      <p class="text-sm text-gray-500 mb-1">Your Booking Reference ID is:</p>
+      <p id="booking-id-display" class="text-2xl font-bold text-[#0A2647] tracking-wider">
+        QTT-123456
+      </p>
+    </div>
+
+    <!-- Close Button -->
+    <button id="close-success-modal-btn" class="w-full bg-[#0A2647] text-white py-3 px-4 rounded-full font-semibold text-lg hover:bg-[#081f3a] shadow-lg transition">
+      Close
+    </button>
+  </div>
+</div>
+<!-- === End of Success Modal === -->
+
+
+<!-- Premium Footer -->
+<footer class="bg-[#0A2647] text-gray-200 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+    
+    <!-- Brand -->
+    <div>
+      <h2 class="text-2xl font-bold text-[#FFD700]">Qushal Tour & Travels</h2>
+      <p class="mt-4 text-gray-400 leading-relaxed">
+        Your trusted travel partner for tours, pickup & drop, and hotel bookings across India.
+      </p>
+    </div>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Quick Links</h3>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-house-chimney w-5 text-gray-400 group-hover:text-[#FFD700]"></i>Home</a></li>
+        <li><a href="tours.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-suitcase-rolling w-5 text-gray-400 group-hover:text-[#FFD700]"></i>Tours</a></li>
+        <li><a href="pickup.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-car-side w-5 text-gray-400 group-hover:text-[#FFD700]"></i>Pickup & Drop</a></li>
+        <li><a href="about.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-circle-info w-5 text-gray-400 group-hover:text-[#FFD70T00]"></i>About</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Contact Us</h3>
+      <p class="text-gray-400 flex items-center gap-2">📍 Jammu, Delhi, Haryana, Rajouri</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">📞 +91-9876543210</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">✉️ info@qushaltravels.com</p>
+    </div>
+    
+    <!-- Social -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Follow Us</h3>
+      <div class="flex space-x-5 text-2xl">
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">
+    © 2025 <span class="text-[#FFD700]">Qushal Tour & Travels</span>. All Rights Reserved.
+  </div>
+</footer>
+
+  <script>
+    // --- Tour Details Data ---
+    const tourDetailsData = {
+      'kerala': {
+        title: 'Enchanting Kerala (7D/6N)',
+        summary: "Experience the serene backwaters, lush tea plantations, and vibrant culture of 'God's Own Country'. This package offers a perfect blend of relaxation and exploration.",
+        itinerary: [
+          { day: 1, title: 'Arrival in Cochin', desc: 'Arrive at Cochin Airport, transfer to hotel. Evening Kathakali show.' },
+          { day: 2, title: 'Cochin to Munnar', desc: 'Drive to Munnar, the heart of tea country. Check into your resort.' },
+          { day: 3, title: 'Munnar Sightseeing', desc: 'Visit Eravikulam National Park, Tea Museum, and Mattupetty Dam.' },
+          { day: 4, title: 'Munnar to Thekkady', desc: 'Drive to Thekkady (Periyar). Evening boat ride on Periyar Lake.' },
+          { day: 5, title: 'Thekkady to Alleppey', desc: 'Drive to Alleppey and board your private houseboat for an overnight backwater cruise.' },
+          { day: 6, title: 'Alleppey to Cochin', desc: 'After breakfast, disembark and drive back to Cochin. Explore Fort Cochin.' },
+          { day: 7, title: 'Departure', desc: 'Transfer to Cochin Airport for your onward journey.' }
+        ],
+        inclusions: ['Accommodation in 3-Star hotels', 'Daily Breakfast', 'Private AC car for all transfers and sightseeing', 'Houseboat stay with all meals', 'All applicable taxes'],
+        exclusions: ['Airfare/Train fare', 'Lunch and Dinner (except on houseboat)', 'Entry fees to monuments', 'Any personal expenses']
+      },
+      'rajasthan': {
+        title: 'Royal Rajasthan (10D/9N)',
+        summary: "Discover the land of kings, majestic forts, vibrant markets, and timeless desert landscapes. A journey through the heart of royal India.",
+        itinerary: [
+          { day: 1, title: 'Arrival in Jaipur', desc: 'Arrive in the Pink City, transfer to hotel. Evening at Chokhi Dhani.' },
+          { day: 2, title: 'Jaipur Sightseeing', desc: 'Visit Amber Fort, City Palace, Jantar Mantar, and Hawa Mahal.' },
+          { day: 3, title: 'Jaipur to Jodhpur', desc: 'Drive to Jodhpur, the Blue City. Visit Mehrangarth Fort and Jaswant Thada.' },
+          { day: 4, title: 'Jodhpur Sightseeing', desc: 'Explore Umaid Bhawan Palace Museum and local markets.' },
+          { day: 5, title: 'Jodhpur to Udaipur', desc: 'Drive to Udaipur, visiting Ranakpur Temples en route.' },
+          { day: 6, title: 'Udaipur Sightseeing', desc: 'Visit the City Palace, Jagdish Temple, and Saheliyon-ki-Bari. Evening boat ride on Lake Pichola.' },
+          { day: 7, title: 'Udaipur to Pushkar', desc: 'Drive to the holy city of Pushkar. Visit the Brahma Temple and Pushkar Lake.' },
+          { day: 8, title: 'Pushkar to Jaisalmer', desc: 'Long drive to the Golden City, Jaisalmer. Check into your hotel.' },
+          { day: 9, title: 'Jaisalmer Sightseeing', desc: 'Visit Jaisalmer Fort, Patwon Ki Haveli. Evening camel safari in the Sam Sand Dunes.' },
+          { day: 10, title: 'Departure', desc: 'Transfer to Jaisalmer Airport or Railway Station.' }
+        ],
+        inclusions: ['Accommodation in heritage hotels', 'Daily Breakfast', 'Private AC car', 'Camel Safari in Jaisalmer', 'All applicable taxes'],
+        exclusions: ['Airfare/Train fare', 'Lunches and Dinners', 'Entry fees', 'Personal expenses']
+      },
+      'himalayas': {
+        title: 'Himalayan Escapade (5D/4N)',
+        summary: "Breathe in the fresh mountain air, witness stunning peaks, and find peace in the serene valleys of Himachal Pradesh.",
+        itinerary: [
+          { day: 1, title: 'Chandigarh to Shimla', desc: 'Arrive in Chandigarh, drive to Shimla. Check into hotel.' },
+          { day: 2, title: 'Shimla Sightseeing', desc: 'Visit Kufri, Jakhoo Temple, and explore The Mall Road.' },
+          { day: 3, title: 'Shimla to Manali', desc: 'Drive to Manali, enjoying scenic views of Kullu Valley.' },
+          { day: 4, title: 'Manali Sightseeing', desc: 'Visit Solang Valley (for adventure sports) and Hadimba Temple.' },
+          { day: 5, title: 'Departure from Manali', desc: 'Morning at leisure. Afternoon transfer to Bhuntar Airport or bus stand.' }
+        ],
+        inclusions: ['Accommodation in comfortable hotels', 'Daily Breakfast and Dinner', 'Private car for all transfers', 'All applicable taxes'],
+        exclusions: ['Airfare/Train fare', 'Lunches', 'Adventure sports fees', 'Personal expenses']
+      },
+      'goa': {
+        title: 'Glorious Goa (4D/3N)',
+        summary: "Relax on sun-kissed beaches, enjoy vibrant nightlife, and explore historic Portuguese architecture in India's party capital.",
+        itinerary: [
+          { day: 1, title: 'Arrival in Goa', desc: 'Arrive at Goa Airport/Station, transfer to your North Goa hotel. Evening at leisure on Baga Beach.' },
+          { day: 2, title: 'North Goa Sightseeing', desc: 'Visit Fort Aguada, Calangute Beach, Anjuna Flea Market.' },
+          { day: 3, title: 'South Goa Sightseeing', desc: 'Visit Old Goa churches (Basilica of Bom Jesus), Mangeshi Temple, and Colva Beach.' },
+          { day: 4, title: 'Departure', desc: 'After breakfast, transfer to airport/station for your onward journey.' }
+        ],
+        inclusions: ['Accommodation in a 3-Star resort', 'Daily Breakfast', 'Airport transfers (private car)', 'One day sightseeing tour (SIC basis)', 'All applicable taxes'],
+        exclusions: ['Airfare/Train fare', 'Lunches and Dinners', 'Water sports fees', 'Personal expenses']
+      },
+      'northeast': {
+        title: 'Unseen North East (8D/7N)',
+        summary: "Discover the hidden gems of India, from living root bridges in Meghalaya to monasteries in Sikkim.",
+        itinerary: [
+          { day: 1, title: 'Arrival in Guwahati', desc: 'Arrive in Guwahati, visit Kamakhya Temple. Transfer to Shillong.' },
+          { day: 2, title: 'Shillong to Cherrapunji', desc: 'Drive to Cherrapunji, visit Seven Sisters Falls, Mawsmai Cave.' },
+          { day: 3, title: 'Cherrapunji (Trekking)', desc: 'Trek to the Double Decker Living Root Bridge.' },
+          { day: 4, title: 'Cherrapunji to Shillong', desc: 'Visit Mawlynnong (Asia\'s cleanest village) en route to Shillong.' },
+          { day: 5, title: 'Shillong to Kaziranga', desc: 'Drive to Kaziranga National Park, home of the One-Horned Rhino.' },
+          { day: 6, title: 'Kaziranga Safari', desc: 'Morning elephant safari and afternoon jeep safari in the park.' },
+          { day: 7, title: 'Kaziranga to Guwahati', desc: 'Drive back to Guwahati. Evening river cruise on the Brahmaputra.' },
+          { day: 8, title: 'Departure', desc: 'Transfer to Guwahati Airport for your onward journey.' }
+        ],
+        inclusions: ['Accommodation in standard hotels', 'Daily Breakfast', 'Private car for all transfers', 'Safaris in Kaziranga', 'All applicable taxes'],
+        exclusions: ['Airfare/Train fare', 'Lunches and Dinners', 'Entry fees', 'Trekking guide fees', 'Personal expenses']
+      },
+      'southindia': {
+        title: 'Southern Wonders (9D/8N)',
+        summary: "Explore ancient temples, rich heritage in Tamil Nadu, and the beautiful coastlines of the south.",
+        itinerary: [
+          { day: 1, title: 'Arrival in Chennai', desc: 'Arrive in Chennai, transfer to hotel. Visit Marina Beach.' },
+          { day: 2, title: 'Chennai & Mahabalipuram', desc: 'Visit Kapaleeshwarar Temple. Drive to Mahabalipuram, visit Shore Temple & Five Rathas.' },
+          { day: 3, title: 'Mahabalipuram to Pondicherry', desc: 'Drive to Pondicherry, explore the French Quarter and Aurobindo Ashram.' },
+          { day: 4, title: 'Pondicherry to Thanjavur', desc: 'Drive to Thanjavur, visit the magnificent Brihadeeswarar Temple.' },
+          { day: 5, title: 'Thanjavur to Madurai', desc: 'Drive to Madurai. Evening visit to Meenakshi Amman Temple for the night ceremony.' },
+          { day: 6, title: 'Madurai Sightseeing', desc: 'Visit Thirumalai Nayakkar Palace and Gandhi Museum.' },
+          { day: 7, title: 'Madurai to Kanyakumari', desc: 'Drive to the southernmost tip of India. Visit Vivekananda Rock Memorial and watch the sunset.' },
+          { day: 8, title: 'Kanyakumari to Kovalam', desc: 'Watch the sunrise. Drive to Kovalam beach, relax.' },
+          { day: 9, title: 'Departure from Trivandrum', desc: 'Transfer to Trivandrum Airport for your onward journey.' }
+        ],
+        inclusions: ['Accommodation in 3-Star hotels', 'Daily Breakfast', 'Private AC car', 'All applicable taxes'],
+        exclusions: ['Airfare/Train fare', 'Lunches and Dinners', 'Entry fees', 'Ferry tickets', 'Personal expenses']
+      }
+    };
+
+    // --- Modal Logic ---
+    const bookingModal = document.getElementById('booking-modal');
+    const detailsModal = document.getElementById('details-modal');
+    const successModal = document.getElementById('success-modal'); // NEW
+    
+    const closeBookingModalBtn = document.getElementById('close-booking-modal-btn');
+    const closeDetailsModalBtn = document.getElementById('close-details-modal-btn');
+    const closeSuccessModalBtn = document.getElementById('close-success-modal-btn'); // NEW
+    
+    const tourPackageSelect = document.getElementById('tour-package');
+    const customRequirementsBox = document.getElementById('custom-requirements-box');
+    const bookingForm = document.getElementById('tour-booking-form'); // NEW
+    const bookingIdDisplay = document.getElementById('booking-id-display'); // NEW
+    const travelDateInput = document.getElementById('tour-date'); // NEW
+
+    // Set min date for travel date input to today
+    if (travelDateInput) {
+      travelDateInput.min = new Date().toISOString().split("T")[0];
+    }
+
+    // --- Booking Modal ---
+    function openBookingModal(tourName) {
+      if (tourPackageSelect) {
+        tourPackageSelect.value = tourName;
+        // Manually trigger the 'change' event to show/hide the custom box
+        const event = new Event('change');
+        tourPackageSelect.dispatchEvent(event);
+      }
+      if (bookingModal) {
+        bookingModal.classList.remove('hidden');
+      }
+    }
+
+    function closeBookingModal() {
+      if (bookingModal) {
+        bookingModal.classList.add('hidden');
+      }
+    }
+
+    if (closeBookingModalBtn) {
+      closeBookingModalBtn.addEventListener('click', closeBookingModal);
+    }
+    if (bookingModal) {
+      bookingModal.addEventListener('click', (e) => {
+        if (e.target === bookingModal) closeBookingModal();
+      });
+    }
+
+    if (tourPackageSelect) {
+      tourPackageSelect.addEventListener('change', function() {
+        if (customRequirementsBox) {
+          if (this.value === 'custom') {
+            customRequirementsBox.style.display = 'block';
+          } else {
+            customRequirementsBox.style.display = 'none';
+          }
+        }
+      });
+    }
+    
+    // --- NEW: Success Modal Logic ---
+    function openSuccessModal(bookingId) {
+      if (bookingIdDisplay) {
+        bookingIdDisplay.textContent = bookingId; // Set the ID
+      }
+      if (successModal) {
+        successModal.classList.remove('hidden'); // Show the modal
+      }
+    }
+    
+    function closeSuccessModal() {
+      if (successModal) {
+        successModal.classList.add('hidden'); // Hide the modal
+      }
+      if (bookingForm) {
+        bookingForm.reset(); // Reset the form fields
+      }
+      // Also reset the custom box visibility
+      if (tourPackageSelect) {
+        const event = new Event('change');
+        tourPackageSelect.dispatchEvent(event);
+      }
+    }
+    
+    if (closeSuccessModalBtn) {
+      closeSuccessModalBtn.addEventListener('click', closeSuccessModal);
+    }
+    if (successModal) {
+      successModal.addEventListener('click', (e) => {
+          if (e.target === successModal) closeSuccessModal();
+      });
+    }
+    
+    // --- *** MODIFIED: Form submission *** ---
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent actual form submission
+        
+        // 1. Generate a unique ID
+        const bookingId = "QTT-" + crypto.randomUUID().split('-')[0].toUpperCase();
+        
+        // 2. Get all form data
+        const formData = {
+          name: document.getElementById('tour-name').value,
+          email: document.getElementById('tour-email').value,
+          phone: document.getElementById('tour-phone').value,
+          packageName: document.getElementById('tour-package').value,
+          travelDate: document.getElementById('tour-date').value,
+          adults: document.getElementById('tour-adults').value,
+          children: document.getElementById('tour-children').value,
+          // You can add more fields here like hotel, pickup, etc.
+        };
+        
+        // 3. Save data to localStorage
+        // We stringify the object to store it
+        try {
+          localStorage.setItem(bookingId, JSON.stringify(formData));
+        } catch (error) {
+          console.error("Error saving to localStorage", error);
+          // Handle potential storage errors (e.g., storage full)
+        }
+        
+        // 4. Close the booking modal
+        closeBookingModal();
+        
+        // 5. Open the success modal with the new ID
+        openSuccessModal(bookingId);
+      });
+    }
+
+    // --- Details Modal ---
+    const detailsModalTitle = document.getElementById('details-modal-title');
+    const detailsModalBody = document.getElementById('details-modal-body');
+    const detailsModalBookBtn = document.getElementById('details-modal-book-btn');
+    let currentTourNameForBooking = '';
+
+    function openDetailsModal(tourId) {
+      const tourData = tourDetailsData[tourId];
+      if (!tourData) return;
+
+      currentTourNameForBooking = tourData.title; // Store the full tour name for the book button
+      if (detailsModalTitle) {
+        detailsModalTitle.innerText = tourData.title;
+      }
+      
+      let itineraryHtml = tourData.itinerary.map(day => `
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold">${day.day}</div>
+          <div>
+            <h4 class="font-semibold text-gray-800">${day.title}</h4>
+            <p class="text-gray-600">${day.desc}</p>
+          </div>
+        </div>
+      `).join('');
+
+      let inclusionsHtml = tourData.inclusions.map(item => `
+        <li class="flex items-center gap-3">
+          <i class="fa-solid fa-check-circle text-green-500"></i>
+          <span class="text-gray-700">${item}</span>
+        </li>
+      `).join('');
+
+      let exclusionsHtml = tourData.exclusions.map(item => `
+        <li class="flex items-center gap-3">
+          <i class="fa-solid fa-times-circle text-red-500"></i>
+          <span class="text-gray-700">${item}</span>
+        </li>
+      `).join('');
+
+      if (detailsModalBody) {
+        detailsModalBody.innerHTML = `
+          <div class="space-y-6">
+            <!-- Summary -->
+            <div>
+              <h3 class="text-xl font-bold text-[#0A2647] mb-3">Tour Summary</h3>
+              <p class="text-gray-600 text-lg">${tourData.summary}</p>
+            </div>
+            
+            <!-- Itinerary -->
+            <div>
+              <h3 class="text-xl font-bold text-[#0A2647] mb-4">Itinerary</h3>
+              <div class="space-y-4 border-l-2 border-blue-200 pl-6">${itineraryHtml}</div>
+            </div>
+            
+            <!-- Inclusions/Exclusions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+              <div>
+                <h3 class="text-xl font-bold text-green-600 mb-3">Inclusions</h3>
+                <ul class="space-y-2">${inclusionsHtml}</ul>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-red-600 mb-3">Exclusions</h3>
+                <ul class="space-y-2">${exclusionsHtml}</ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (detailsModal) {
+        detailsModal.classList.remove('hidden');
+      }
+    }
+
+    function closeDetailsModal() {
+      if (detailsModal) {
+        detailsModal.classList.add('hidden');
+      }
+    }
+
+    if (closeDetailsModalBtn) {
+      closeDetailsModalBtn.addEventListener('click', closeDetailsModal);
+    }
+    if (detailsModal) {
+      detailsModal.addEventListener('click', (e) => {
+        if (e.target === detailsModal) closeDetailsModal();
+      });
+    }
+
+    // "Book This Tour" button INSIDE the details modal
+    if (detailsModalBookBtn) {
+      detailsModalBookBtn.addEventListener('click', () => {
+        closeDetailsModal();
+        // Open the booking modal with the correct tour name pre-filled
+        openBookingModal(currentTourNameForBooking);
+      });
+    }
+
+    // --- Filter Logic ---
+    const searchBox = document.getElementById('search-box');
+    const filterRegion = document.getElementById('filter-region');
+    const filterDuration = document.getElementById('filter-duration');
+    const tourGrid = document.getElementById('tour-grid');
+    const tourCards = tourGrid ? tourGrid.querySelectorAll('.tour-card') : [];
+    const noResults = document.getElementById('no-results');
+    const resetFiltersBtn = document.getElementById('reset-filters-btn'); // NEW
+
+    function filterTours() {
+      const searchTerm = searchBox.value.toLowerCase();
+      const region = filterRegion.value;
+      const duration = filterDuration.value;
+      
+      let visibleCount = 0;
+
+      tourCards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const cardRegion = card.dataset.region;
+        const cardDuration = parseInt(card.dataset.duration, 10);
+
+        // Check search term
+        const searchMatch = title.includes(searchTerm);
+
+        // Check region
+        const regionMatch = (region === 'all' || cardRegion === region);
+
+        // Check duration
+        let durationMatch = false;
+        if (duration === 'all') {
+          durationMatch = true;
+        } else if (duration === '1-5' && cardDuration <= 5) {
+          durationMatch = true;
+        } else if (duration === '6-10' && cardDuration >= 6 && cardDuration <= 10) {
+          durationMatch = true;
+        } else if (duration === '10+' && cardDuration > 10) {
+          durationMatch = true;
+        }
+        
+        // Show/hide card
+        if (searchMatch && regionMatch && durationMatch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Show/hide 'No Results' message
+      if (noResults) {
+        if (visibleCount === 0) {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+        }
+      }
+    }
+
+    // --- NEW: Reset Button Logic ---
+    if (resetFiltersBtn) {
+      resetFiltersBtn.addEventListener('click', () => {
+        if (searchBox) searchBox.value = '';
+        if (filterRegion) filterRegion.value = 'all';
+        if (filterDuration) filterDuration.value = 'all';
+        filterTours(); // Re-run the filter
+      });
+    }
+
+    // Add event listeners to filters
+    if (searchBox) searchBox.addEventListener('keyup', filterTours);
+    if (filterRegion) filterRegion.addEventListener('change', filterTours);
+    if (filterDuration) filterDuration.addEventListener('change', filterTours);
+
+    // --- NEW: Find Ticket Form Logic ---
+    const findTicketForm = document.getElementById('find-ticket-form');
+    const bookingIdInput = document.getElementById('booking-id-input');
+    const bookingIdError = document.getElementById('booking-id-error');
+
+    if (findTicketForm) {
+      findTicketForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const bookingId = bookingIdInput.value.trim();
+        
+        if (bookingId) {
+          // Clear any previous error
+          if (bookingIdError) {
+            bookingIdError.classList.add('hidden');
+            bookingIdError.textContent = '';
+          }
+          
+          // Redirect to the ticket page with the ID as a query parameter
+          window.location.href = `tticket.html?bookingId=${encodeURIComponent(bookingId)}`;
+        } else {
+          // Show an error if the field is empty
+          if (bookingIdError) {
+            bookingIdError.textContent = 'Please enter a valid booking ID.';
+            bookingIdError.classList.remove('hidden');
+          }
+        }
+      });
+    }
+
+    // Re-activate lucide icons for modal/filters/new form
+    lucide.createIcons();
+  </script>
+  
+  <!-- The user had this script, so I am keeping it. -->
+  <script src="js/main.js" defer></script>
+</body>
+</html>

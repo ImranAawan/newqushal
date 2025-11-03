@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Your Private Chauffeur - Qushal Tour & Travels</title>
+  <meta name="description" content="Book your premium pickup and drop service. Provide your travel details for a seamless, professional chauffeur experience."/>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- <link rel="stylesheet" href="css/styles.css"/> -->
+  <style>
+    body{font-family:'Inter',sans-serif}
+    
+    /* --- Ultra Premium Form Styles --- */
+    .form-label {
+      @apply block text-sm font-semibold text-gray-700 mb-2;
+    }
+    .form-input, .form-select {
+      @apply w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200;
+      @apply focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white focus:outline-none;
+      /* Ensure consistent appearance for select */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1.25em;
+      padding-right: 2.5rem; /* Make space for arrow */
+    }
+    
+    /* Custom Radio Button Styling */
+    .radio-label {
+      @apply flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-300 bg-gray-50 cursor-pointer transition-all;
+    }
+    .form-radio {
+      @apply hidden; /* Hide the default radio */
+    }
+    .form-radio + .radio-visual {
+      @apply w-5 h-5 rounded-full border-2 border-gray-400 bg-white transition-all duration-200;
+      @apply flex items-center justify-center;
+    }
+    .form-radio + .radio-visual::after {
+      @apply content-[''] w-2 h-2 rounded-full bg-white transition-all scale-0;
+    }
+    .form-radio:checked + .radio-visual {
+      @apply bg-blue-600 border-blue-600;
+    }
+    .form-radio:checked + .radio-visual::after {
+      @apply scale-100;
+    }
+    .form-radio:checked ~ .radio-text {
+      @apply font-semibold text-blue-700;
+    }
+    .form-radio:checked + .radio-visual + .radio-text {
+        @apply font-semibold text-blue-700;
+    }
+
+    /* Conditional field transition */
+    .conditional-field {
+      @apply transition-all duration-500 ease-in-out overflow-hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .conditional-field.visible {
+      max-height: 500px; /* arbitrary large value */
+      opacity: 1;
+      transform: translateY(0);
+      margin-top: 1.5rem; /* Add space when visible */
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900"> <!-- Main background changed to light gray -->
+
+<!-- ### HEADER ### -->
+<div class="sticky top-0 z-50 w-full px-4 py-3 transition-all duration-300" id="headerContainer">
+  <header class="relative max-w-7xl mx-auto bg-transparent shadow-none border-transparent rounded-full border transition-all duration-300" id="mainHeader">
+    <nav class="w-full px-4 sm:px-6 py-2 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <!-- Assuming logo is in the same folder -->
+        <img src="qushal logo 3.jpg" alt="Qushal Tour & Travels Logo"
+             class="h-12 w-auto rounded-xl shadow-md"
+             onerror="this.style.display='none'">
+        <span class="text-xl font-bold text-white hidden sm:block" id="navLogoText">Qushal Travels</span>
+      </a>
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-1 font-medium items-center" id="desktopNavLinks">
+        <li>
+          <a href="index.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            <span class="relative">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="tours.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="map" class="w-5 h-5"></i>
+            <span class="relative">Tours</span>
+          </a>
+        </li>
+        <li>
+          <a href="services.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="concierge-bell" class="w-5 h-5"></i>
+            <span class="relative">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span class="relative">Contact</span>
+          </a>
+        </li>
+      </ul>
+      <!-- CTA Button -->
+      <a href="contact.html"
+         class="hidden md:inline-block bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+         Get in Touch
+      </a>
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden flex items-center text-white text-2xl" id="menuBtn">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </nav>
+  </header>
+  <!-- Mobile Dropdown -->
+  <div class="md:hidden hidden flex-col space-y-2 px-4 py-4 bg-white shadow-lg rounded-2xl mt-2 mx-4 border border-gray-100" id="mobileMenu">
+    <a href="index.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="home" class="w-5 h-5 text-gray-500"></i> Home</a>
+    <a href="tours.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="map" class="w-5 h-5 text-gray-500"></i> Tours</a>
+    <a href="services.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="concierge-bell" class="w-5 h-5 text-gray-500"></i> Services</a>
+    <a href="contact.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-gray-500"></i> Contact</a>
+    <a href="contact.html" class="mt-2 bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-center">Get in Touch</a>
+  </div>
+</div>
+
+<!-- ### HEADER SCRIPT ### -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const headerContainer = document.getElementById("headerContainer");
+  const mainHeader = document.getElementById("mainHeader");
+  const navLogoText = document.getElementById("navLogoText");
+  const desktopNavLinks = document.getElementById("desktopNavLinks");
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle("flex");
+  });
+  window.addEventListener("scroll", () => {
+    const navLinks = desktopNavLinks.querySelectorAll('a.nav-link');
+    if (window.scrollY > 20) {
+      mainHeader.classList.add("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.remove("bg-transparent", "shadow-none", "border-transparent");
+      if (navLogoText) {
+        navLogoText.classList.add("text-gray-800");
+        navLogoText.classList.remove("text-white");
+      }
+      menuBtn.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+      navLinks.forEach(link => {
+        link.classList.add("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.remove("text-white", "hover:bg-white/10");
+      });
+    } else {
+      mainHeader.classList.remove("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.add("bg-transparent", "shadow-none", "border-transparent");
+      if (navLogoText) {
+        navLogoText.classList.remove("text-gray-800");
+        navLogoText.classList.add("text-white");
+      }
+      menuBtn.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+      navLinks.forEach(link => {
+        link.classList.remove("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.add("text-white", "hover:bg-white/10");
+      });
+    }
+  });
+</script>
+
+<!-- ### Page Header Section ### -->
+<section class="bg-[#0A2647] text-white py-20 md:py-28 -mt-24 pt-32">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Book Your Private Chauffeur</h1>
+    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      Please provide your travel details below. We will confirm your booking shortly.
+    </p>
+  </div>
+</section>
+
+<!-- ### Booking Form & Service Guarantee Section ### -->
+<section class="py-16 md:py-24 bg-gray-50"> 
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+    
+    <!-- Column 1: Booking Form -->
+    <div class="lg:col-span-2 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
+      <h2 class="text-3xl font-bold text-[#0A2647] mb-8">Your Travel Details</h2>
+
+      <!-- Success Message -->
+      <div id="successMessage" class="hidden mb-6 p-5 rounded-lg bg-green-100 text-green-800 border border-green-200">
+        <h3 class="font-semibold text-lg">Thank You!</h3>
+        <p class="mt-1">Your request has been received. Our team will contact you shortly to confirm.</p>
+        <p class="mt-3 font-semibold text-gray-700">Your Booking ID: <span id="bookingId" class="text-green-900"></span></p>
+        <!-- Download Ticket Button -->
+        <a id="downloadTicketBtn" href="pticket.html" class="inline-block mt-4 bg-[#FFD700] text-[#0A2647] font-semibold px-6 py-2 rounded-full shadow hover:bg-[#e6c200] transition text-sm">
+          Download Your Ticket
+        </a>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="bookingForm" class="space-y-6">
+        
+        <!-- Trip Type -->
+        <div>
+          <label class="form-label">Trip Type</label>
+          <div class="grid grid-cols-2 gap-4">
+            <label class="radio-label">
+              <input type="radio" id="trip-one-way" name="trip-type" value="one-way" class="form-radio" checked>
+              <span class="radio-visual"></span>
+              <span class="radio-text text-gray-700">One-Way</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" id="trip-round-trip" name="trip-type" value="round-trip" class="form-radio">
+              <span class="radio-visual"></span>
+              <span class="radio-text text-gray-700">Round Trip</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Service Type -->
+        <div>
+          <label for="service-type" class="form-label">Service Type</label>
+          <select id="service-type" name="service-type" class="form-select">
+            <option value="city-to-city">City-to-City Transfer</option>
+            <option value="airport">Airport Transfer</option>
+            <option value="hourly">Local (Hourly Hire)</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Conditional Flight Number Field -->
+        <div id="flight-field" class="conditional-field">
+          <label for="flight-number" class="form-label">Flight Number</label>
+          <input type="text" id="flight-number" name="flight-number" class="form-input" placeholder="e.g., AI 805">
+        </div>
+
+        <!-- ### UPDATED: Location Fields ### -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="pickup-location" class="form-label">Pickup Location</label>
+            <!-- Changed from input to select -->
+            <select id="pickup-location" name="pickup-location" class="form-select" required>
+              <option value="" disabled selected>Select a pickup location</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Haryana">Haryana</option>
+              <option value="UP">UP (Uttar Pradesh)</option>
+              <option value="Himachal">Himachal</option>
+              <option value="Jammu">Jammu</option>
+              <option value="Srinagar">Srinagar</option>
+              <option value="Other">Other (Specify in instructions)</option>
+            </select>
+          </div>
+          <div>
+            <label for="dropoff-location" class="form-label">Drop-off Location</label>
+            <input type="text" id="dropoff-location" name="dropoff-location" class="form-input" placeholder="e.g., Jammu or Hotel Name" required>
+          </div>
+        </div>
+        <!-- ### END OF UPDATE ### -->
+
+        <!-- Date & Time Fields -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="pickup-date" class="form-label">Pickup Date</label>
+            <input type="date" id="pickup-date" name="pickup-date" class="form-input" required>
+          </div>
+          <div>
+            <label for="pickup-time" class="form-label">Pickup Time</label>
+            <input type="time" id="pickup-time" name="pickup-time" class="form-input" required>
+          </div>
+        </div>
+        
+        <!-- Conditional Return Fields -->
+        <div id="return-fields" class="conditional-field grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="return-date" class="form-label">Return Date</label>
+            <input type="date" id="return-date" name="return-date" class="form-input">
+          </div>
+          <div>
+            <label for="return-time" class="form-label">Return Time</label>
+            <input type="time" id="return-time" name="return-time" class="form-input">
+          </div>
+        </div>
+
+        <!-- Passengers & Vehicle Fields -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="passengers" class="form-label">Passengers</label>
+            <input type="number" id="passengers" name="passengers" class="form-input" placeholder="1" min="1" max="20" required>
+          </div>
+          <div>
+            <label for="vehicle-preference" class="form-label">Vehicle Preference</label>
+            <select id="vehicle-preference" name="vehicle-preference" class="form-select">
+              <option value="any">Any (Recommended)</option>
+              <option value="sedan">Sedan (1-3 Guests)</option>
+              <option value="suv">SUV (4-7 Guests)</option>
+              <option value="luxury">Luxury (1-3 Guests)</option>
+            </select>
+          </div>
+        </div>
+        
+        <hr class="border-gray-200">
+        
+        <h3 class="text-xl font-bold text-[#0A2647] pt-4">Your Contact Information</h3>
+        
+        <!-- Contact Fields -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="full-name" class="form-label">Full Name</label>
+            <input type="text" id="full-name" name="full-name" class="form-input" placeholder="Your Name" required>
+          </div>
+          <div>
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+        <div>
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+        </div>
+        
+        <!-- Special Instructions -->
+        <div>
+          <label for="instructions" class="form-label">Special Instructions (Optional)</label>
+          <textarea id="instructions" name="instructions" rows="4" class="form-input" placeholder="e.g., Specific address, extra luggage, child seat, etc."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button type="submit" class="w-full bg-[#FFD700] text-[#0A2647] font-bold px-10 py-4 rounded-full shadow-lg hover:bg-[#e6c200] transition text-lg flex items-center justify-center gap-3">
+            <i data-lucide="send" class="w-5 h-5"></i>
+            Send Booking Request
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Column 2: Service Guarantee -->
+    <div class="lg:col-span-1">
+      <div class="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-[#FFD700] sticky top-32">
+        <h3 class="text-2xl font-bold text-[#0A2647] mb-6">Our Service Guarantee</h3>
+        <p class="text-gray-600 mb-8">
+          Booking with Qushal Travels ensures a seamless, safe, and premium experience. Your journey is our priority.
+        </p>
+        <ul class="space-y-6">
+          <li class="flex items-start gap-4">
+            <div class="bg-blue-50 text-blue-600 w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full">
+              <i data-lucide="user-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg text-gray-800">Discreet & Professional</h4>
+              <p class="text-gray-600">Our chauffeurs are vetted, trained, and dedicated to your privacy and comfort.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="bg-blue-50 text-blue-600 w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg text-gray-800">Pristine Vehicles</h4>
+              <p class="text-gray-600">Travel in a meticulously maintained, detailed, and sanitized premium vehicle.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="bg-blue-50 text-blue-600 w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full">
+              <i data-lucide="phone-call" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg text-gray-800">24/7 Concierge Support</h4>
+              <p class="text-gray-600">Our team is available around the clock to assist with any changes to your itinerary.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <h4 class="font-semibold text-lg text-gray-800 mb-3">Have Questions?</h4>
+          <p class="text-gray-600">
+            For complex itineraries or immediate assistance, call us directly at 
+            <a href="tel:+919876543210" class="text-blue-600 font-medium hover:underline">+91-9876543210</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ### Premium Footer ### -->
+<footer class="bg-[#0A2647] text-gray-200 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+    
+    <!-- Brand -->
+    <div>
+      <h2 class="text-2xl font-bold text-[#FFD700]">Qushal Tour & Travels</h2>
+      <p class="mt-4 text-gray-400 leading-relaxed">
+        Your trusted partner for premium chauffeur services, luxury rentals, and bespoke travel across India.
+      </p>
+    </div>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Quick Links</h3>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-house-chimney w-5 text-gray-400"></i>Home</a></li>
+        <li><a href="tours.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-suitcase-rolling w-5 text-gray-400"></i>Tours</a></li>
+        <li><a href="services.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-car-side w-5 text-gray-400"></i>Services</a></li>
+        <li><a href="contact.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-circle-info w-5 text-gray-400"></i>Contact</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Contact Us</h3>
+      <p class="text-gray-400 flex items-center gap-2">📍 Jammu, Delhi, Haryana, Rajouri</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">📞 +91-9876543210</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">✉️ info@qushaltravels.com</p>
+    </div>
+    
+    <!-- Social -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Follow Us</h3>
+      <div class="flex space-x-5 text-2xl">
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">
+    © 2025 <span class="text-[#FFD700]">Qushal Tour & Travels</span>. All Rights Reserved.
+  </div>
+</footer>
+  
+  <script>
+    // Activate Lucide Icons
+    lucide.createIcons();
+
+    // ### UPDATED: JavaScript for Smart Form, Booking ID & Full Data Passing ###
+    document.addEventListener('DOMContentLoaded', () => {
+      const bookingForm = document.getElementById('bookingForm');
+      const successMessage = document.getElementById('successMessage');
+      const bookingIdSpan = document.getElementById('bookingId');
+      // Get reference to the download button
+      const downloadTicketBtn = document.getElementById('downloadTicketBtn');
+      
+      const tripTypeRadios = document.querySelectorAll('input[name="trip-type"]');
+      const serviceTypeSelect = document.getElementById('service-type');
+      
+      const returnFields = document.getElementById('return-fields');
+      const flightField = document.getElementById('flight-field');
+      const returnDateInput = document.getElementById('return-date');
+
+      // --- Conditional Logic ---
+
+      // 1. Trip Type (Show/Hide Return Fields)
+      tripTypeRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          if (e.target.value === 'round-trip') {
+            returnFields.classList.add('visible');
+            returnDateInput.setAttribute('required', 'true');
+          } else {
+            returnFields.classList.remove('visible');
+            returnDateInput.removeAttribute('required');
+          }
+        });
+      });
+
+      // 2. Service Type (Show/Hide Flight Field)
+      serviceTypeSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'airport') {
+          flightField.classList.add('visible');
+        } else {
+          flightField.classList.remove('visible');
+        }
+      });
+
+      // --- Form Submission ---
+      bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Stop the form from submitting normally
+
+        // Generate Booking ID
+        const newBookingId = 'QT-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        bookingIdSpan.textContent = newBookingId;
+
+        // --- THIS IS THE CRITICAL CHANGE ---
+        // Get all form data and build URL parameters
+        const formData = new FormData(bookingForm);
+        const params = new URLSearchParams();
+        
+        for (const [key, value] of formData.entries()) {
+          if (value) { // Only add fields that have a value
+            params.append(key, value);
+          }
+        }
+        params.append('bookingId', newBookingId);
+        // --- END OF CRITICAL CHANGE ---
+
+        // Update the download button's link with ALL data
+        downloadTicketBtn.href = `ticket.html?${params.toString()}`;
+
+        // Show the success message
+        successMessage.classList.remove('hidden');
+
+        // Reset the form
+        bookingForm.reset();
+        
+        // Manually hide conditional fields again after reset
+        returnFields.classList.remove('visible');
+        flightField.classList.remove('visible');
+
+        // Scroll to the top of the form to show the message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      
+      // --- Date Picker Min Date ---
+      const setMinDate = (inputId) => {
+        const dateInput = document.getElementById(inputId);
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+      }
+      
+      setMinDate('pickup-date');
+      setMinDate('return-date');
+    });
+  </script>
+  
+</body>
+</html>
+

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- ### PAGE TITLE UPDATED ### -->
+  <title>Our Premium Services - Qushal Tour & Travels</title>
+  <meta name="description" content="Explore our premium services: professional chauffeur, luxury car rentals, bespoke guided tours, and curated travel packages."/>
+  
+  <!-- ### ALL STYLESHEETS COPIED FROM INDEX.HTML ### -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Use Lucide for modern icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <!-- Keep FontAwesome for body icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    body{font-family:'Inter',sans-serif}
+    /* Any specific styles from index.html can be kept for consistency */
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+<!-- ### HEADER COPIED FROM INDEX.HTML ### -->
+<!-- ### ACTIVE LINK STATE IS ON "SERVICES" ### -->
+<div class="sticky top-0 z-50 w-full px-4 py-3 transition-all duration-300" id="headerContainer">
+  <header class="relative max-w-7xl mx-auto bg-transparent shadow-none border-transparent rounded-full border transition-all duration-300" id="mainHeader">
+    <nav class="w-full px-4 sm:px-6 py-2 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="qushal logo 3.jpg" alt="Qushal Tour & Travels Logo"
+             class="h-12 w-auto rounded-xl shadow-md">
+        <span class="text-xl font-bold text-white hidden sm:block" id="navLogoText">Qushal Travels</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-1 font-medium items-center" id="desktopNavLinks">
+        <li>
+          <!-- Home Link (Inactive) -->
+          <a href="index.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            <span class="relative">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="tours.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="map" class="w-5 h-5"></i>
+            <span class="relative">Tours</span>
+          </a>
+        </li>
+        <li>
+          <!-- Services Link (Active) -->
+          <a href="services.html" class="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white transition-colors duration-200" id="activeNavLink">
+            <i data-lucide="concierge-bell" class="w-5 h-5"></i>
+            <span class="relative">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span class="relative">Contact</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- CTA Button -->
+      <a href="contact.html"
+         class="hidden md:inline-block bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+         Get in Touch
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden flex items-center text-white text-2xl" id="menuBtn">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Dropdown -->
+  <div class="md:hidden hidden flex-col space-y-2 px-4 py-4 bg-white shadow-lg rounded-2xl mt-2 mx-4 border border-gray-100" id="mobileMenu">
+    <!-- Active state updated for mobile -->
+    <a href="index.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="home" class="w-5 h-5 text-gray-500"></i> Home</a>
+    <a href="tours.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="map" class="w-5 h-5 text-gray-500"></i> Tours</a>
+    <a href="services.html" class="flex items-center gap-3 py-3 px-3 rounded-md bg-gray-100 text-blue-600 transition-colors"><i data-lucide="concierge-bell" class="w-5 h-5"></i> Services</a>
+    <a href="contact.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-gray-500"></i> Contact</a>
+    <a href="contact.html" class="mt-2 bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-center">Get in Touch</a>
+  </div>
+</div>
+
+
+<!-- ### HEADER SCRIPT COPIED FROM INDEX.HTML ### -->
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const headerContainer = document.getElementById("headerContainer");
+  const mainHeader = document.getElementById("mainHeader");
+  const navLogoText = document.getElementById("navLogoText");
+  const desktopNavLinks = document.getElementById("desktopNavLinks");
+  const activeNavLink = document.getElementById("activeNavLink");
+
+  // Mobile Menu Toggle
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle("flex");
+  });
+
+  // Shadow animation on scroll
+  window.addEventListener("scroll", () => {
+    const navLinks = desktopNavLinks.querySelectorAll('a.nav-link');
+
+    if (window.scrollY > 20) {
+      mainHeader.classList.add("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.remove("bg-transparent", "shadow-none", "border-transparent");
+      if (navLogoText) {
+        navLogoText.classList.add("text-gray-800");
+        navLogoText.classList.remove("text-white");
+      }
+      menuBtn.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+      navLinks.forEach(link => {
+        link.classList.add("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.remove("text-white", "hover:bg-white/10");
+      });
+      if (activeNavLink) {
+        activeNavLink.classList.add("bg-blue-50", "text-blue-600");
+        activeNavLink.classList.remove("bg-white/20", "text-white");
+      }
+
+    } else {
+      mainHeader.classList.remove("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.add("bg-transparent", "shadow-none", "border-transparent");
+      if (navLogoText) {
+        navLogoText.classList.remove("text-gray-800");
+        navLogoText.classList.add("text-white");
+      }
+      menuBtn.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+      navLinks.forEach(link => {
+        link.classList.remove("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.add("text-white", "hover:bg-white/10");
+      });
+      if (activeNavLink) {
+        activeNavLink.classList.remove("bg-blue-50", "text-blue-600");
+        activeNavLink.classList.add("bg-white/20", "text-white");
+      }
+    }
+  });
+</script>
+
+<!-- ### Page Header Section (Unchanged) ### -->
+<section class="bg-[#0A2647] text-white py-20 md:py-28 -mt-24 pt-32"> <!-- Offset for sticky header -->
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Our Premium Services</h1>
+    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      Seamless, reliable, and curated travel solutions for discerning clients.
+    </p>
+  </div>
+</section>
+
+<!-- ### UPDATED: Main Service "Chauffeur Service" Section ### -->
+<!-- Using bg-gray-50 for alternating section colors -->
+<section class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    
+    <!-- Image Column -->
+    <div class="rounded-2xl shadow-xl overflow-hidden aspect-w-1 aspect-h-1 lg:aspect-w-4 lg:aspect-h-3">
+      <!-- Better placeholder image -->
+      <img src="Gemini_Generated_Image_jm1n80jm1n80jm1n.png" alt="Professional Chauffeur Service" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Content Column -->
+    <div>
+      <span class="text-blue-600 font-semibold text-sm uppercase">Discreet & Professional</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-[#0A2647]">
+        Chauffeur <span class="text-[#FFD700]">Service</span>
+      </h2>
+      <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+        For discerning clients who value punctuality and discretion. We provide seamless airport transfers, executive travel, and private transport from <strong>Jammu, Delhi, Haryana, and Rajouri</strong> to any destination in India.
+      </p>
+      
+      <!-- Feature List with Premium Icons -->
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-4">
+          <i data-lucide="shield-check" class="w-6 h-6 text-[#FFD700] mt-1 flex-shrink-0"></i>
+          <div>
+            <h4 class="font-semibold text-gray-800">Safety & Discretion</h4>
+            <p class="text-gray-600">Professionally trained drivers and a commitment to your privacy.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <i data-lucide="clock" class="w-6 h-6 text-[#FFD700] mt-1 flex-shrink-0"></i>
+          <div>
+            <h4 class="font-semibold text-gray-800">Always On Time</h4>
+            <p class="text-gray-600">Punctuality is the cornerstone of our service. We're there when you need us.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <i data-lucide="globe" class="w-6 h-6 text-[#FFD700] mt-1 flex-shrink-0"></i>
+          <div>
+            <h4 class="font-semibold text-gray-800">All-India Coverage</h4>
+            <p class="text-gray-600">Seamless transfers from our northern hubs to any city in the nation.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CTA Button -->
+      <a href="pickup-drop.html" class="bg-[#FFD700] text-[#0A2647] font-bold px-10 py-4 rounded-full shadow-lg hover:bg-[#e6c200] transition text-lg">
+        Arrange Your Transfer
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ### NEW: "Luxury Car Rental" Section ### -->
+<!-- Using bg-white for alternating section colors and reversing the layout -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    
+    <!-- Content Column (Reversed Order) -->
+    <div>
+      <span class="text-blue-600 font-semibold text-sm uppercase">Your Journey, Your Terms</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-[#0A2647]">
+        Luxury <span class="text-[#FFD700]">Car Rentals</span>
+      </h2>
+      <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+        Experience the freedom of the open road with our curated fleet of premium and luxury vehicles. Perfect for business trips, special occasions, or simply traveling in unparalleled comfort and style.
+      </p>
+      
+      <!-- Feature List with Premium Icons -->
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-4">
+          <i data-lucide="key-round" class="w-6 h-6 text-[#FFD700] mt-1 flex-shrink-0"></i>
+          <div>
+            <h4 class="font-semibold text-gray-800">Premium & Luxury Fleet</h4>
+            <p class="text-gray-600">Choose from top-tier sedans, powerful SUVs, and luxury models.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <i data-lucide="sparkles" class="w-6 h-6 text-[#FFD700] mt-1 flex-shrink-0"></i>
+          <div>
+            <h4 class="font-semibold text-gray-800">Pristine Condition</h4>
+            <p class="text-gray-600">Every vehicle is meticulously maintained, detailed, and sanitized.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <i data-lucide="calendar-days" class="w-6 h-6 text-[#FFD700] mt-1 flex-shrink-0"></i>
+          <div>
+            <h4 class="font-semibold text-gray-800">Flexible Bookings</h4>
+            <p class="text-gray-600">Available for daily, weekly, or monthly rentals to suit your schedule.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CTA Button -->
+      <a href="fleet.html" class="bg-[#FFD700] text-[#0A2647] font-bold px-10 py-4 rounded-full shadow-lg hover:bg-[#e6c200] transition text-lg">
+        Explore Our Fleet
+      </a>
+    </div>
+
+    <!-- Image Column (Reversed Order) -->
+    <div class="rounded-2xl shadow-xl overflow-hidden aspect-w-1 aspect-h-1 lg:aspect-w-4 lg:aspect-h-3 lg:order-last">
+      <!-- Darker, premium placeholder -->
+      <img src="Gemini_Generated_Image_nn5ky5nn5ky5nn5k.png" alt="Luxury Car Rental" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- ### NEW: "Bespoke Travel Services" Section ### -->
+<!-- Replaces the old 3-card section with a more premium layout -->
+<section class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[#0A2647]">
+        Complete Your <span class="text-[#FFD700]">Journey</span>
+      </h2>
+      <p class="text-gray-600 text-lg mb-12 md:mb-16">
+        Beyond the drive, our concierge team can curate every aspect of your travel, ensuring a seamless and unforgettable experience from start to finish.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Service 1: Bespoke Guided Tours -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+        <div class="bg-[#FFD700] text-[#0A2647] w-16 h-16 flex items-center justify-center rounded-full mb-6 shadow-md">
+          <i data-lucide="map" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-[#0A2647]">Bespoke Guided Tours</h3>
+        <p class="text-gray-600 mb-6 flex-grow">Explore hidden gems and cultural landmarks with our expert local guides. We create private, personalized tours based on your interests.</p>
+        <a href="tours.html" class="font-semibold text-blue-600 hover:text-blue-700 transition group">
+          Explore Tours <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Service 2: Curated Hotel Bookings -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+        <div class="bg-[#FFD700] text-[#0A2647] w-16 h-16 flex items-center justify-center rounded-full mb-6 shadow-md">
+          <i data-lucide="concierge-bell" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-[#0A2647]">Curated Hotel Bookings</h3>
+        <p class="text-gray-600 mb-6 flex-grow">Gain access to our exclusive portfolio of luxury hotels, boutique inns, and private villas, often with complimentary upgrades and amenities.</p>
+        <a href="contact.html" class="font-semibold text-blue-600 hover:text-blue-700 transition group">
+          Inquire About Hotels <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Service 3: Custom Travel Packages -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+        <div class="bg-[#FFD700] text-[#0A2647] w-16 h-16 flex items-center justify-center rounded-full mb-6 shadow-md">
+          <i data-lucide="briefcase" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-[#0A2647]">Custom Travel Packages</h3>
+        <p class="text-gray-600 mb-6 flex-grow">Your entire itinerary, from flights to private dining, tailored to your exact specifications. The ultimate stress-free travel experience.</p>
+        <a href="contact.html" class="font-semibold text-blue-600 hover:text-blue-700 transition group">
+          Plan Your Trip <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ### UPDATED: FAQ Section ### -->
+<!-- Now on bg-white for alternation -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-center text-[#0A2647]">
+      Frequently Asked <span class="text-[#FFD700]">Questions</span>
+    </h2>
+    <div class="space-y-6">
+      
+      <!-- FAQ 1 -->
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">How do I book a chauffeur?</h3>
+        <p class="text-gray-600">
+          You can book by calling us directly at <a href="tel:+919876543210" class="text-blue-600 font-medium hover:underline">+91-9876543210</a> or by filling out our 
+          <a href="contact.html" class="text-blue-600 font-medium hover:underline">contact form</a>. 
+          We recommend booking at least 24 hours in advance for executive travel.
+        </p>
+      </div>
+      
+      <!-- NEW FAQ -->
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">What kind of cars can I rent?</h3>
+        <p class="text-gray-600">
+          Our fleet includes a wide range of vehicles from premium sedans (like Audi, BMW, Mercedes-Benz) to luxury SUVs and larger vehicles for groups. Please <a href="contact.html" class="text-blue-600 font-medium hover:underline">contact us</a> for current availability and fleet details.
+        </p>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">What are your main service areas?</h3>
+        <p class="text-gray-600">
+          Our primary chauffeur and rental hubs are in <strong>Jammu, Delhi, Haryana, and Rajouri</strong>. We provide drop services and one-way rentals to any destination across India.
+        </p>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
+        <h3 class="font-semibold text-lg text-gray-800 mb-2">Can I book a custom tour package?</h3>
+        <p class="text-gray-600">
+          Absolutely. Our "Custom Travel Packages" are our specialty. 
+          <a href="contact.html" class="text-blue-600 font-medium hover:underline">Contact us</a> with your requirements, and our travel designers will create a fully personalized itinerary just for you.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ### RE-USED: Call to Action (from index.html) ### -->
+<section class="bg-[#FFD700] text-[#0A2647] py-16 text-center relative overflow-hidden">
+  <div class="relative z-10 px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Begin Your Unforgettable Journey</h2>
+    <p class="text-lg mb-8 text-[#0A2647] opacity-90">Contact our concierge team to plan your perfect trip today.</p>
+    <a href="contact.html" 
+       class="bg-[#0A2647] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#081f3a] shadow-lg transition">
+      🚀 Contact Us Today
+    </a>
+  </div>
+  <div class="absolute inset-0 opacity-10 bg-[url('images/bg-pattern.png')] bg-cover"></div>
+</section>
+
+<!-- ### RE-USED: Premium Footer (from index.html) ### -->
+<footer class="bg-[#0A2647] text-gray-200 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+    
+    <!-- Brand -->
+    <div>
+      <h2 class="text-2xl font-bold text-[#FFD700]">Qushal Tour & Travels</h2>
+      <p class="mt-4 text-gray-400 leading-relaxed">
+        Your trusted partner for premium chauffeur services, luxury rentals, and bespoke travel across India.
+      </p>
+    </div>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Quick Links</h3>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-house-chimney w-5 text-gray-400"></i>Home</a></li>
+        <li><a href="tours.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-suitcase-rolling w-5 text-gray-400"></i>Tours</a></li>
+        <li><a href="services.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-car-side w-5 text-gray-400"></i>Services</a></li>
+        <li><a href="contact.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-circle-info w-5 text-gray-400"></i>Contact</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Contact Us</h3>
+      <p class="text-gray-400 flex items-center gap-2">📍 Jammu, Delhi, Haryana, Rajouri</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">📞 +91-9876543210</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">✉️ info@qushaltravels.com</p>
+    </div>
+    
+    <!-- Social -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Follow Us</h3>
+      <div class="flex space-x-5 text-2xl">
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">
+    © 2025 <span class="text-[#FFD700]">Qushal Tour & Travels</span>. All Rights Reserved.
+  </div>
+</footer>
+  
+  <script>
+    // Activate Lucide Icons
+    lucide.createIcons();
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Booking Confirmation - Qushal Tour & Travels</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    
+    /* This creates the arrow shape from the image */
+    /* UPDATED: Removed media query to force desktop-style arrow */
+    .arrow-box {
+      clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+    }
+
+    /* Simple barcode simulation */
+    .barcode {
+      height: 50px;
+      display: flex;
+      align-items: center;
+    }
+    .barcode-bar {
+      display: inline-block;
+      height: 100%;
+      background-color: #333;
+      margin-right: 1px;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body * {
+        visibility: hidden;
+      }
+      #ticket-container, #ticket-container * {
+        visibility: visible;
+      }
+      #ticket-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+      }
+      #print-button-container {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 py-12 md:py-24">
+
+  <main class="max-w-5xl mx-auto">
+    <div id="ticket-container" class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+      
+      <div class="flex">
+        
+        <section class="w-4/12 bg-white p-6 md:p-8 border-r border-gray-200">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-[#0A2647]">Qushal Tour & Travels</h2>
+            <div class="flex items-center gap-2 text-blue-600 font-semibold mt-2">
+              <span>BOOKING CONFIRMATION</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plane -rotate-45"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 5.2 5.2c.4.4 1 .5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+            </div>
+          </div>
+          
+          <div class="bg-[#0A2647] text-white p-6 rounded-lg arrow-box">
+            <h3 class="text-lg font-bold text-[#FFD700] mb-4">ITINERARY DETAILS</h3>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-300">BOOKING ID:</span>
+                <span id="ticket-booking-id" class="font-semibold text-white">Loading...</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-300">BOOKING DATE:</span>
+                <span id="ticket-booking-date" class="font-semibold text-white">Loading...</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-300">STATUS:</span>
+                <span class="font-semibold text-green-400">CONFIRMED</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-3">
+            <div>
+              <label class="block text-xs text-gray-500 mb-0.5">Package Name</label>
+              <p id="ticket-package-name" class="text-lg font-semibold text-gray-900 capitalize">Loading...</p>
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-0.5">Lead Passenger</label>
+              <p id="ticket-lead-passenger" class="text-lg font-semibold text-gray-900">Loading...</p>
+            </div>
+            <div>
+              <label class="block text-xs text-gray-500 mb-0.5">Number of Guests</label>
+              <p id="ticket-guests" class="text-lg font-semibold text-gray-900">Loading...</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="w-5/12 flex flex-col justify-between bg-gray-50/50 p-6 md:p-8 border-r border-gray-200">
+          <div>
+            <h3 class="text-xl font-bold text-[#0A2647] mb-6">YOUR TRIP ITINERARY</h3>
+            
+            <div class="relative pl-6 space-y-6 border-l-2 border-dashed border-blue-400">
+              
+              <div class="relative">
+                <div class="absolute -left-3.5 top-1 w-6 h-6 bg-blue-600 rounded-full border-4 border-white"></div>
+                <h4 class="font-semibold text-gray-800">1. Pickup Details</h4>
+                <p class="text-sm text-gray-600">
+                  From: <strong id="ticket-pickup-location" class="text-gray-900">Loading...</strong>
+                </p>
+                <p class="text-sm text-gray-600">
+                  Time: <strong id="ticket-pickup-time" class="text-gray-900">--:--</strong>
+                </p>
+              </div>
+              
+              <div class="relative">
+                <div class="absolute -left-3.5 top-1 w-6 h-6 bg-blue-600 rounded-full border-4 border-white"></div>
+                <h4 class="font-semibold text-gray-800">2. Dropoff Details</h4>
+                <p class="text-sm text-gray-600">
+                  To: <strong id="ticket-dropoff-location" class="text-gray-900">Loading...</strong>
+                </p>
+              </div>
+
+              <div id="ticket-flight-details" class="relative hidden">
+                <div class="absolute -left-3.5 top-1 w-6 h-6 bg-blue-600 rounded-full border-4 border-white"></div>
+                <h4 class="font-semibold text-gray-800">Flight Information</h4>
+                <p class="text-sm text-gray-600">
+                  Flight No: <strong id="ticket-flight-number" class="text-gray-900">--</strong>
+                </p>
+              </div>
+
+              <div id="ticket-return-details" class="relative hidden">
+                <div class="absolute -left-3.5 top-1 w-6 h-6 bg-blue-600 rounded-full border-4 border-white"></div>
+                <h4 class="font-semibold text-gray-800">Return Trip</h4>
+                <p class="text-sm text-gray-600">
+                  Date: <strong id="ticket-return-date" class="text-gray-900">--</strong>
+                </p>
+                <p class="text-sm text-gray-600">
+                  Time: <strong id="ticket-return-time" class="text-gray-900">--:--</strong>
+                </p>
+              </div>
+
+            </div>
+          </div>
+          
+          <div class="mt-8 pt-4 border-t border-gray-200">
+            <p class="font-semibold text-gray-700">Cab Service: <span class="text-blue-600">Included (Private Chauffeur)</span></p>
+          </div>
+        </section>
+
+        <section class="w-3/12 bg-gray-50/50 p-6 md:p-8">
+          <h3 class="text-lg font-bold text-[#0A2647] mb-4">CUSTOMER INFORMATION</h3>
+          <div class="space-y-2 text-sm">
+            <div>
+              <span class="text-gray-500">Email:</span>
+              <p id="ticket-email" class="font-medium text-gray-800 break-words">Loading...</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Mobile:</span>
+              <p id="ticket-mobile" class="font-medium text-gray-800">Loading...</p>
+            </div>
+            <div>
+              <span class="text-gray-500">Emergency:</span>
+              <p id="ticket-emergency" class="font-medium text-gray-800">Loading...</p>
+            </div>
+          </div>
+
+          <div class="mt-6 text-center">
+            <label class="block text-xs text-gray-500 mb-2">SCAN FOR DETAILS</label>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://qushaltravels.com" 
+                 alt="QR Code" 
+                 class="w-full h-auto max-w-[9rem] mx-auto border-4 border-white shadow-md rounded-lg">
+          </div>
+          
+          <div class="mt-6">
+            <div class="barcode w-full">
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+              <div class="barcode-bar" style="width: 3px;"></div>
+              <div class="barcode-bar" style="width: 1px;"></div>
+              <div class="barcode-bar" style="width: 2px;"></div>
+            </div>
+            <p class="text-xs text-center text-gray-500 mt-2 break-words">info@qushaltravels.com • Enjoy Your Journey!</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <div id="print-button-container" class="mt-8 text-center">
+      <button 
+        onclick="window.print()" 
+        class="bg-[#FFD700] text-[#0A2647] font-bold px-10 py-4 rounded-full shadow-lg hover:bg-[#e6c200] transition text-lg flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
+        <i data-lucide="printer" class="w-5 h-5"></i>
+        Print / Save as PDF
+      </button>
+      <a href="pickup-drop.html" class="block mt-4 text-blue-600 hover:underline">Book Another Trip</a>
+    </div>
+
+  </main>
+
+
+  <script>
+    // Activate Lucide Icons
+    lucide.createIcons();
+
+    // This script runs as soon as the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Get the URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // 2. Helper function to get a parameter and update the text
+      const setData = (id, paramName) => {
+        const element = document.getElementById(id);
+        const value = urlParams.get(paramName);
+        if (element && value) {
+          element.textContent = value;
+        } else if (element) {
+            // Don't show "Loading..." if the value is just empty
+            element.textContent = 'Not Provided';
+        }
+      };
+
+      // 3. Populate all the fields on the ticket
+      // Note the new element IDs matching the new HTML structure
+      setData('ticket-booking-id', 'bookingId');
+      setData('ticket-booking-date', 'pickup-date'); // Using pickup-date as the booking date
+      setData('ticket-package-name', 'service-type');
+      setData('ticket-lead-passenger', 'full-name');
+      setData('ticket-guests', 'passengers');
+
+      setData('ticket-pickup-location', 'pickup-location');
+      setData('ticket-pickup-time', 'pickup-time');
+      setData('ticket-dropoff-location', 'dropoff-location');
+      
+      setData('ticket-email', 'email');
+      setData('ticket-mobile', 'phone');
+      setData('ticket-emergency', 'phone'); // Re-using phone for emergency
+
+      // 4. Handle conditional fields (Return Trip & Flight)
+      const returnDate = urlParams.get('return-date');
+      if (returnDate) {
+        setData('ticket-return-date', 'return-date');
+        setData('ticket-return-time', 'return-time');
+        document.getElementById('ticket-return-details').classList.remove('hidden');
+      }
+      
+      const flightNumber = urlParams.get('flight-number');
+      if (flightNumber) {
+        setData('ticket-flight-number', 'flight-number');
+        document.getElementById('ticket-flight-details').classList.remove('hidden');
+      }
+    });
+  </script>
+
+</body>
+</html>

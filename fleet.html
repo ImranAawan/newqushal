@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- ### PAGE TITLE UPDATED ### -->
+  <title>Explore Our Fleet - Qushal Tour & Travels</title>
+  <meta name="description" content="Explore our curated fleet of premium sedans, luxury vehicles, and spacious SUVs for your next journey."/>
+  
+  <!-- ### ALL STYLESHEETS COPIED FROM INDEX.HTML ### -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Use Lucide for modern icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <!-- Keep FontAwesome for body icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    body{font-family:'Inter',sans-serif}
+    /* Simple transition for the vehicle cards on filter */
+    .vehicle-card {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .filter-active {
+      background-color: #0A2647;
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+<!-- ### HEADER COPIED FROM SERVICES.HTML ### -->
+<!-- ### NOTE: No "Active" link, as this is a sub-page ### -->
+<div class="sticky top-0 z-50 w-full px-4 py-3 transition-all duration-300" id="headerContainer">
+  <header class="relative max-w-7xl mx-auto bg-transparent shadow-none border-transparent rounded-full border transition-all duration-300" id="mainHeader">
+    <nav class="w-full px-4 sm:px-6 py-2 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="qushal logo 3.jpg" alt="Qushal Tour & Travels Logo"
+             class="h-12 w-auto rounded-xl shadow-md">
+        <span class="text-xl font-bold text-white hidden sm:block" id="navLogoText">Qushal Travels</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-1 font-medium items-center" id="desktopNavLinks">
+        <li>
+          <a href="index.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            <span class="relative">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="tours.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="map" class="w-5 h-5"></i>
+            <span class="relative">Tours</span>
+          </a>
+        </li>
+        <li>
+          <!-- Services Link (No longer active on this sub-page) -->
+          <a href="services.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="concierge-bell" class="w-5 h-5"></i>
+            <span class="relative">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html" class="group nav-link flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-colors duration-200">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span class="relative">Contact</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- CTA Button -->
+      <a href="contact.html"
+         class="hidden md:inline-block bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+         Get in Touch
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden flex items-center text-white text-2xl" id="menuBtn">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Dropdown -->
+  <div class="md:hidden hidden flex-col space-y-2 px-4 py-4 bg-white shadow-lg rounded-2xl mt-2 mx-4 border border-gray-100" id="mobileMenu">
+    <!-- No active link state -->
+    <a href="index.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="home" class="w-5 h-5 text-gray-500"></i> Home</a>
+    <a href="tours.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="map" class="w-5 h-5 text-gray-500"></i> Tours</a>
+    <a href="services.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="concierge-bell" class="w-5 h-5 text-gray-500"></i> Services</a>
+    <a href="contact.html" class="flex items-center gap-3 py-3 px-3 rounded-md hover:bg-gray-100 transition-colors"><i data-lucide="phone" class="w-5 h-5 text-gray-500"></i> Contact</a>
+    <a href="contact.html" class="mt-2 bg-blue-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-center">Get in Touch</a>
+  </div>
+</div>
+
+
+<!-- ### HEADER SCRIPT COPIED FROM SERVICES.HTML ### -->
+<script>
+  // Same header script as other pages
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const headerContainer = document.getElementById("headerContainer");
+  const mainHeader = document.getElementById("mainHeader");
+  const navLogoText = document.getElementById("navLogoText");
+  const desktopNavLinks = document.getElementById("desktopNavLinks");
+  // No activeNavLink on this page
+  // const activeNavLink = document.getElementById("activeNavLink"); 
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle("flex");
+  });
+
+  window.addEventListener("scroll", () => {
+    const navLinks = desktopNavLinks.querySelectorAll('a.nav-link');
+
+    if (window.scrollY > 20) {
+      mainHeader.classList.add("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.remove("bg-transparent", "shadow-none", "border-transparent");
+      if (navLogoText) {
+        navLogoText.classList.add("text-gray-800");
+        navLogoText.classList.remove("text-white");
+      }
+      menuBtn.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+      navLinks.forEach(link => {
+        link.classList.add("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.remove("text-white", "hover:bg-white/10");
+      });
+      // No active link logic needed
+    } else {
+      mainHeader.classList.remove("bg-white/90", "backdrop-blur-lg", "shadow-xl", "border-gray-100");
+      mainHeader.classList.add("bg-transparent", "shadow-none", "border-transparent");
+      if (navLogoText) {
+        navLogoText.classList.remove("text-gray-800");
+        navLogoText.classList.add("text-white");
+      }
+      menuBtn.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+      navLinks.forEach(link => {
+        link.classList.remove("text-gray-500", "hover:bg-gray-100", "hover:text-gray-900");
+        link.classList.add("text-white", "hover:bg-white/10");
+      });
+      // No active link logic needed
+    }
+  });
+</script>
+
+<!-- ### NEW: Page Header Section ### -->
+<section class="bg-[#0A2647] text-white py-20 md:py-28 -mt-24 pt-32"> <!-- Offset for sticky header -->
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Explore Our Premium Fleet</h1>
+    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      Find the perfect vehicle for your journey, from executive sedans to luxury SUVs.
+    </p>
+  </div>
+</section>
+
+<!-- ### NEW: Fleet Filter & Grid Section ### -->
+<section class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Filter Buttons -->
+    <div class="flex justify-center flex-wrap gap-3 mb-12">
+      <button class="filter-btn filter-active px-5 py-2 rounded-full font-semibold transition-all duration-200" data-filter="all">All Vehicles</button>
+      <button class="filter-btn bg-white text-gray-700 px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-sm border border-gray-200 hover:bg-gray-100" data-filter="sedan">Sedans</button>
+      <button class="filter-btn bg-white text-gray-700 px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-sm border border-gray-200 hover:bg-gray-100" data-filter="suv">SUVs</button>
+      <button class="filter-btn bg-white text-gray-700 px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-sm border border-gray-200 hover:bg-gray-100" data-filter="luxury">Luxury</button>
+    </div>
+
+    <!-- Vehicle Grid -->
+    <div id="fleetGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Vehicle 1: Luxury -->
+      <div class="vehicle-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col" data-category="luxury">
+        <img src="https://placehold.co/600x400/1f2937/ffffff?text=Mercedes+E-Class" alt="Mercedes-Benz E-Class" class="w-full h-56 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+          <span class="text-xs font-semibold uppercase text-blue-600 mb-2">Luxury</span>
+          <h3 class="text-2xl font-bold text-[#0A2647] mb-4">Mercedes-Benz E-Class</h3>
+          <ul class="grid grid-cols-2 gap-3 mb-6 text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-[#FFD700]"></i> 4 Passengers</li>
+            <li class="flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-[#FFD700]"></i> 2 Bags</li>
+          </ul>
+          <p class="text-gray-600 mb-6 flex-grow">The benchmark for executive travel, combining premium comfort and timeless class.</p>
+          <a href="contact.html" class="mt-auto text-center bg-[#FFD700] text-[#0A2647] px-6 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">Inquire Now</a>
+        </div>
+      </div>
+
+      <!-- Vehicle 2: SUV -->
+      <div class="vehicle-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col" data-category="suv">
+        <img src="https://placehold.co/600x400/4b5563/ffffff?text=Toyota+Fortuner" alt="Toyota Fortuner" class="w-full h-56 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+          <span class="text-xs font-semibold uppercase text-blue-600 mb-2">SUV</span>
+          <h3 class="text-2xl font-bold text-[#0A2647] mb-4">Toyota Fortuner</h3>
+          <ul class="grid grid-cols-2 gap-3 mb-6 text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-[#FFD700]"></i> 7 Passengers</li>
+            <li class="flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-[#FFD700]"></i> 4 Bags</li>
+          </ul>
+          <p class="text-gray-600 mb-6 flex-grow">Command the road with this powerful and spacious SUV, perfect for families or rugged terrain.</p>
+          <a href="contact.html" class="mt-auto text-center bg-[#FFD700] text-[#0A2647] px-6 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">Inquire Now</a>
+        </div>
+      </div>
+
+      <!-- Vehicle 3: Sedan -->
+      <div class="vehicle-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col" data-category="sedan">
+        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Toyota+Camry" alt="Toyota Camry" class="w-full h-56 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+          <span class="text-xs font-semibold uppercase text-blue-600 mb-2">Sedan</span>
+          <h3 class="text-2xl font-bold text-[#0A2647] mb-4">Toyota Camry</h3>
+          <ul class="grid grid-cols-2 gap-3 mb-6 text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-[#FFD700]"></i> 5 Passengers</li>
+            <li class="flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-[#FFD700]"></i> 3 Bags</li>
+          </ul>
+          <p class="text-gray-600 mb-6 flex-grow">A reliable and sophisticated sedan offering a smooth ride for city or highway travel.</p>
+          <a href="contact.html" class="mt-auto text-center bg-[#FFD700] text-[#0A2647] px-6 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">Inquire Now</a>
+        </div>
+      </div>
+
+      <!-- Vehicle 4: SUV (Innova) -->
+      <div class="vehicle-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col" data-category="suv">
+        <img src="https://placehold.co/600x400/6b7280/ffffff?text=Innova+Crysta" alt="Toyota Innova Crysta" class="w-full h-56 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+          <span class="text-xs font-semibold uppercase text-blue-600 mb-2">SUV</span>
+          <h3 class="text-2xl font-bold text-[#0A2647] mb-4">Toyota Innova Crysta</h3>
+          <ul class="grid grid-cols-2 gap-3 mb-6 text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-[#FFD700]"></i> 7 Passengers</li>
+            <li class="flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-[#FFD700]"></i> 4 Bags</li>
+          </ul>
+          <p class="text-gray-600 mb-6 flex-grow">The ultimate choice for group comfort, offering spacious seating and unmatched reliability.</p>
+          <a href="contact.html" class="mt-auto text-center bg-[#FFD700] text-[#0A2647] px-6 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">Inquire Now</a>
+        </div>
+      </div>
+
+      <!-- Vehicle 5: Luxury -->
+      <div class="vehicle-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col" data-category="luxury">
+        <img src="https://placehold.co/600x400/374151/ffffff?text=Audi+A6" alt="Audi A6" class="w-full h-56 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+          <span class="text-xs font-semibold uppercase text-blue-600 mb-2">Luxury</span>
+          <h3 class="text-2xl font-bold text-[#0A2647] mb-4">Audi A6</h3>
+          <ul class="grid grid-cols-2 gap-3 mb-6 text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-[#FFD700]"></i> 5 Passengers</li>
+            <li class="flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-[#FFD700]"></i> 3 Bags</li>
+          </ul>
+          <p class="text-gray-600 mb-6 flex-grow">Experience progressive design and sophisticated technology in this premium executive sedan.</p>
+          <a href="contact.html" class="mt-auto text-center bg-[#FFD700] text-[#0A2647] px-6 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">Inquire Now</a>
+        </div>
+      </div>
+
+      <!-- Vehicle 6: Sedan -->
+      <div class="vehicle-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col" data-category="sedan">
+        <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Maruti+Dzire" alt="Maruti Dzire" class="w-full h-56 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+          <span class="text-xs font-semibold uppercase text-blue-600 mb-2">Sedan</span>
+          <h3 class="text-2xl font-bold text-[#0A2647] mb-4">Maruti Dzire</h3>
+          <ul class="grid grid-cols-2 gap-3 mb-6 text-gray-600">
+            <li class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5 text-[#FFD700]"></i> 5 Passengers</li>
+            <li class="flex items-center gap-2"><i data-lucide="briefcase" class="w-5 h-5 text-[#FFD700]"></i> 2 Bags</li>
+          </ul>
+          <p class="text-gray-600 mb-6 flex-grow">An efficient and comfortable choice for quick city transfers and economical travel.</p>
+          <a href="contact.html" class="mt-auto text-center bg-[#FFD700] text-[#0A2647] px-6 py-3 rounded-full font-semibold shadow hover:bg-[#e6c200] transition">Inquire Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ### NEW: "Our Fleet Promise" Section ### -->
+<!-- Re-using the premium 3-column layout -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-[#0A2647]">
+        Our <span class="text-[#FFD700]">Fleet Promise</span>
+      </h2>
+      <p class="text-gray-600 text-lg mb-12 md:mb-16">
+        Every vehicle in our collection meets the highest standards of quality, safety, and presentation.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Promise 1: Maintenance -->
+      <div class="bg-gray-50 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col text-center items-center">
+        <div class="bg-[#FFD700] text-[#0A2647] w-16 h-16 flex items-center justify-center rounded-full mb-6 shadow-md">
+          <i data-lucide="shield-check" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-[#0A2647]">Impeccable Maintenance</h3>
+        <p class="text-gray-600">Every vehicle undergoes rigorous daily inspections and is professionally detailed and sanitized before each rental.</p>
+      </div>
+
+      <!-- Promise 2: Drivers -->
+      <div class="bg-gray-50 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col text-center items-center">
+        <div class="bg-[#FFD700] text-[#0A2647] w-16 h-16 flex items-center justify-center rounded-full mb-6 shadow-md">
+          <i data-lucide="user-check" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-[#0A2647]">Professional Drivers</h3>
+        <p class="text-gray-600">Our chauffeurs are vetted, licensed, and trained in defensive driving and customer etiquette for your safety and comfort.</p>
+      </div>
+
+      <!-- Promise 3: Booking -->
+      <div class="bg-gray-50 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col text-center items-center">
+        <div class="bg-[#FFD700] text-[#0A2647] w-16 h-16 flex items-center justify-center rounded-full mb-6 shadow-md">
+          <i data-lucide="calendar-clock" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-[#0A2647]">Flexible Booking</h3>
+        <p class="text-gray-600">We offer daily, weekly, and monthly rentals, as well as one-way transfers and multi-city tours, all tailored to your schedule.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ### RE-USED: Call to Action (from index.html) ### -->
+<section class="bg-[#FFD700] text-[#0A2647] py-16 text-center relative overflow-hidden">
+  <div class="relative z-10 px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Find Your Perfect Ride</h2>
+    <p class="text-lg mb-8 text-[#0A2647] opacity-90">Contact our concierge team to book your vehicle today.</p>
+    <a href="contact.html" 
+       class="bg-[#0A2647] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#081f3a] shadow-lg transition">
+      🚀 Contact Us Today
+    </a>
+  </div>
+  <div class="absolute inset-0 opacity-10 bg-[url('images/bg-pattern.png')] bg-cover"></div>
+</section>
+
+<!-- ### RE-USED: Premium Footer (from index.html) ### -->
+<footer class="bg-[#0A2647] text-gray-200 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+    
+    <!-- Brand -->
+    <div>
+      <h2 class="text-2xl font-bold text-[#FFD700]">Qushal Tour & Travels</h2>
+      <p class="mt-4 text-gray-400 leading-relaxed">
+        Your trusted partner for premium chauffeur services, luxury rentals, and bespoke travel across India.
+      </p>
+    </div>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Quick Links</h3>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-house-chimney w-5 text-gray-400"></i>Home</a></li>
+        <li><a href="tours.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-suitcase-rolling w-5 text-gray-400"></i>Tours</a></li>
+        <li><a href="services.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-car-side w-5 text-gray-400"></i>Services</a></li>
+        <li><a href="contact.html" class="flex items-center gap-2 hover:text-[#FFD700] transition"><i class="fa-solid fa-circle-info w-5 text-gray-400"></i>Contact</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Contact Us</h3>
+      <p class="text-gray-400 flex items-center gap-2">📍 Jammu, Delhi, Haryana, Rajouri</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">📞 +91-9876543210</p>
+      <p class="text-gray-400 flex items-center gap-2 mt-2">✉️ info@qushaltravels.com</p>
+    </div>
+    
+    <!-- Social -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 text-[#FFD700]">Follow Us</h3>
+      <div class="flex space-x-5 text-2xl">
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD700] transition" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-[#FFD7D0] transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">
+    © 2025 <span class="text-[#FFD700]">Qushal Tour & Travels</span>. All Rights Reserved.
+  </div>
+</footer>
+  
+  <script>
+    // Activate Lucide Icons
+    lucide.createIcons();
+
+    // ### NEW: JavaScript for Fleet Filter ###
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const vehicleCards = document.querySelectorAll('.vehicle-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const filter = button.dataset.filter;
+
+          // Update button styles
+          filterButtons.forEach(btn => {
+            btn.classList.remove('filter-active', 'bg-white', 'text-gray-700');
+            if (btn === button) {
+              btn.classList.add('filter-active');
+            } else {
+              btn.classList.add('bg-white', 'text-gray-700');
+            }
+          });
+
+          // Update vehicle card visibility
+          vehicleCards.forEach(card => {
+            const category = card.dataset.category;
+            if (filter === 'all' || filter === category) {
+              card.style.display = 'flex'; // Use 'flex' as cards are flex-col
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+  
+</body>
+</html>
